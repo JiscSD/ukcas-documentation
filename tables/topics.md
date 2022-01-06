@@ -1,13 +1,18 @@
 # topics
 
-The `topics` table details the different topics that are available for querying the data on. each topic then has a number of children variables that are referenced in the `variables` table (link) in a one to many relation.
 
-## example use
+## What are Topics?
+The `topics` table details the different topics that are available for querying the data on. each topic then has a number of children variables that are referenced in the [variables](variables.md) table in a one to many relation.
+
+## Example use
+The following are some examples of JOIN queries
+topic_id on the [variables](variables.md) table using id.
+
 ## Schema
 
 |column|type|use|
 |-|-|-|
-|id|int4|primary key|
+|id|int4|primary key, and a foreign key used by `variables` table|
 |abbreviation|varchar(255)|The shorthand way of referencing the topics `name`|
 |name|varchar(255)|the full length name for the selected topic|
 |description|text|A full description describing what the topic represents|
