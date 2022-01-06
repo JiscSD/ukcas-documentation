@@ -2,14 +2,20 @@
 
 The `topics` table details the different topics that are available for querying the data on. each topic then has a number of children variables that are referenced in the `variables` table (link) in a one to many relation.
 
-The columns that make up the table consist of:
+## example use
+## Schema
 
-- `ID` The foreign key that relates the `topics` table to the `variables` table with a one to many relationship
-- `abbreviation` The shorthand way of referencing the topics `name`
-- `name` the full length name for the selected topic
-- `description` A full description describing what the topic represents
-- `ordinal` A value that represents an arbitrary numerical order for the data
-- `top level geography` an array of what geographies from the `top_level_geographies` table these topics are available for
+|column|type|use|
+|-|-|-|
+|id|int4|primary key|
+|abbreviation|varchar(255)|The shorthand way of referencing the topics `name`|
+|name|varchar(255)|the full length name for the selected topic|
+|description|text|A full description describing what the topic represents|
+|ordinal|int4|A value that represents an arbitrary numerical order for the data|
+|top level geography|_int4|an array of what geographies from the `top_level_geographies` table these topics are available for|
+
+
+## Sample query
 
 ```sql
 SELECT ID, ABBREVIATION, NAME, DESCRIPTION, ORDINAL, TOP_LEVEL_GEOGRAPHY FROM topics WHERE ID 3;
