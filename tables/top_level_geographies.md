@@ -4,7 +4,7 @@ The `top_level_geographies` table returns information regarding the individual `
 
 The following `JOIN` queries can be carried out:
 
-- `geography_type_id` on the [geography_groupings](geography_groupings.md) table using `id`.
+- `geography_type_id` on the [geography_groupings](geography_groupings.md) table using `geography_type_id`.
 - `top_level_geography_id` on the [geography_areas](geography_areas.md) table using `id`.
 
 ## Schema
