@@ -19,8 +19,8 @@ If searching for a combination of everyone in `Scotland` shown by `age`, you wou
 
 |column|type|use|
 |-|-|-|
-|id|int4|Primary key|
-|geography_type_id|int4|Foreign key for `geography_groupings`|
+|id|int4|Primary key. This also acts as a foreign key for `geography_areas` and `geography_groupings`.|
+|geography_type_id|int4|Foreign key for `geography_groupings`.|
 |description|varchar(255)|User-readable name to describe a geography.|
 |geography_code|varchar(50)|A unique identifier for a given geography.|
 |hidden_from_ui|bool|Whether a geography should be visible to the end user.|
