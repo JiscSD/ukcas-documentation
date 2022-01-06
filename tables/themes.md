@@ -16,7 +16,7 @@ The following `JOIN` queries could be carried out if the [topics](topics.md) tab
 |column|type|use|
 |-|-|-|
 |id|int4|primary key|
-|Theme|varchar(255)|A short description outlying what topics a user could expect to find related to this theme|
+|theme|varchar(255)|A short description outlying what topics a user could expect to find related to this theme|
 |description|varchar(255)|A longer description of the selected theme|
 
 ## Sample query
