@@ -26,19 +26,19 @@ From this you could then continue to search for the number of people by `AGE` an
 |column|type|use|
 |-|-|-|
 |id|int4|Primary key.|
-|top_level_geography|int4|Foreign key for `top_level_geographies`.|
-|geography_grouping_id|int4|Relates to a geographical group in `geography_groupings`, eg. `Gwynedd` has a value of `2,006` which relates to `Local Authorities`.|
+|top_level_geography_id|int4|Foreign key for `top_level_geographies`.|
+|geography_grouping_id|int4|Relates to a geographical group in `geography_groupings`, eg. `Gwynedd` has a value of `2,006` which relates to the grouping of `Local Authorities`.|
 |description|varchar(255)|An end-user friendly description for the geography.|
 |geography_code|varchar(50)|A unique identifier for a geography.|
 
 ## Sample query
 
 ```sql
-SELECT id, top_level_geography, geography_grouping_id, description, geography_code FROM geography_areas WHERE id = 17;
+SELECT id, top_level_geography_id, geography_grouping_id, description, geography_code FROM geography_areas WHERE id = 17;
 ```
 
 Returns the following:
 
-|id|top_level_geography|geography_grouping_id|description|geography_code|
+|id|top_level_geography_id|geography_grouping_id|description|geography_code|
 |-|-|-|-|-|
 |17|4|2,005|Buckinghamshire|E10000002|
