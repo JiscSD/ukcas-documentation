@@ -8,22 +8,40 @@ The following `JOIN` queries can be carried out:
 
 ## What are geography groupings?
 
-A `geography_groupings` refer to named collection/groupings of `geography_areas`. Taking the example query of:
-
-
-## Example use
-
-You would like to find out which geographic grouping the `Down` geography (with `ID` of 65) is associated with:
+A `geography_groupings` refer to named collection/groupings of `geography_areas`, so if we look at the following query:
 
 ```sql
 select ga.id, ga.description, ga.geography_code, ga.geography_grouping_id, gg.name as geography_grouping_name from geography_areas ga left join geography_groupings gg on gg.id = ga.geography_grouping_id where ga.id = 65;
 ```
 
-Shows that `Down` has a geographic grouping of `Local Authorities`:
+We can see that `Down` has a geographic grouping of `Local Authorities`:
 
 |id|description|geography_code|geography_grouping_id|geography_grouping_name|
 |-|-|-|-|-|
 |65|Down|95NN|2,006|Local Authorities|
+
+## Example use
+
+You would like to retrieve the number of Local Authorities (`LA`) grouped by `top_level_geographies` along with the top-level `geography_code`:
+
+```sql
+select tlg.geography_code, tlg.description, count(ga.id) as local_authorities
+from geography_areas ga
+left join geography_groupings gg on ga.geography_grouping_id = gg.id
+left join top_level_geographies tlg on ga.top_level_geography_id = tlg.id
+where gg.abbreviation = 'LA' group by tlg.description, tlg.geography_code;
+
+```
+
+This results in the following:
+
+|geography_code|description|local_authorities|
+|--------------|-----------|-----------------|
+|E92000001|England|324|
+|N92000002|Northern Ireland|26|
+|S92000003|Scotland|32|
+|W92000004|Wales|22|
+
 
 ## Schema
 
