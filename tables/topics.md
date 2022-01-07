@@ -12,6 +12,17 @@ The following are some examples of JOIN queries
 
 topic_id on the [variables](variables.md) table using id.
 
+```sql
+SELECT t.ID, t.ABBREVIATION, t.NAME, v.description FROM topics as t left join variables v ON v.topic_id = t.id WHERE t.ID = 3 limit 5;
+```
+
+|id|abbreviation|name|description|
+|-|-|-|-|
+|3|AGE|Age|Total: Age|
+|3|AGE|Age|Age 0 to 4|
+|3|AGE|Age|Age 5 to 7|
+|3|AGE|Age|Age 8 to 9|
+|3|AGE|Age|Age 10 to 14|
 ## Schema
 
 |column|type|use|
@@ -35,14 +46,3 @@ This query will return the following table.
 |id|abbreviation|name|description|ordinal|top_level_geography_coverage|
 |-|-|-|-|-|-|
 |3|AGE|Age|Age is derived from the date of birth question and is a person's age at their last birthday, at 27 March 2011. Dates of birth that imply an age over 115 are treated as invalid and the person's age is imputed. Infants less than one year old are classified as 0 years of age.|6|{1}|
-```sql
-SELECT t.ID, t.ABBREVIATION, t.NAME, v.description FROM topics as t left join variables v ON v.topic_id = t.id WHERE t.ID = 3 limit 5;
-```
-
-|id|abbreviation|name|description|
-|-|-|-|-|
-|3|AGE|Age|Total: Age|
-|3|AGE|Age|Age 0 to 4|
-|3|AGE|Age|Age 5 to 7|
-|3|AGE|Age|Age 8 to 9|
-|3|AGE|Age|Age 10 to 14|
