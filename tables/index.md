@@ -16,4 +16,4 @@ This section contains information about the UKCAS PostgreSQL database. This incl
 
 ## Entity Relationship Diagram (ER)
 
-![Entity Relationship Diagram (ER)](ERD.png)
+![Entity Relationship Diagram (ER)](/tables/ERD.png)
