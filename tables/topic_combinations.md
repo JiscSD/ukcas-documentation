@@ -14,7 +14,7 @@ from topic_combinations
 where ARRAY['AGE'] <@ ARRAY[combination]
 ```
 
-|id|combination|geography_conbinations|
+|id|combination|geography_combinations|
 |-|-|-|
 |106|AGE,COBCON,ECOACT,INDUST,SEX,UNIT|{2003:5}|
 |107|AGE,COBCON,ECOACT,OGRPMIN,SEX,UNIT|2003:5|
