@@ -1,1 +1,71 @@
+# tables/variables
 
+The `Variables` table displays information concerning the various different `variables` that are stored on the database.
+The following `JOIN` queries can be carried out:
+
+- `geography_type_id` on the [topics](topics.md) table using `topic_id`.
+
+## What are top-level variables?
+
+`variables` relate to topics in a many to one relationship. Where every [topic](topics.md) is sub-divided into many different variables. These `variables` alongside their parent `topics` represent context of the database as without them the data would just be arbitrary numbers alongside geographical locations.
+
+## Example use
+
+I want to identify every child `variable` for the `topic` `SEX`. We will start by identidying the `id` for the chosen `topic` of `SEX`.
+
+```sql
+SELECT id, abbreviation, description  FROM c2011_meta.topics 
+WHERE abbreviation = SEX;
+```
+
+output:
+
+|id|abbreviation|description|
+|-|-|-|
+|64|SEX|The classification of a person as either male or female.|
+
+Now that we know the ID of the desired topic is `64` we can do a JOIN with the `variables` table in order to find out the corresponding `variables`.
+
+```sql
+SELECT topic_id, c2011_meta.variables.description FROM c2011_meta.variables 
+left join c2011_meta.topics
+on c2011_meta.variables.topic_id = c2011_meta.topics.id
+where c2011_meta.topics.id = 64
+```
+
+Which gives us the following result:
+|topic_id|description|
+|-|-|
+|64|Total: Sex|
+|64|Males|
+|64|Females|
+|64|Male|
+|64|Female|
+## Schema
+
+|column|type|use|
+|-|-|-|
+|topic_id|int4|Foreign key that relates the variables table to the corresponding `topics` table|
+|id|int4|Primary key.|
+|description|varchar(500)|A description of the variable.|
+|ordinal|int4|An arbitrary numerical order for the data.|
+|parent_code|int4|Lists the `id` of any other variables that have a parent relationship to the variable|
+|full_description|text|A longer version of the description field|
+
+
+## Sample query
+
+```sql
+SELECT topic_id, id, description, ordinal, parent_code, full_description FROM c2011_meta.variables;
+```
+
+Will return the following:
+
+|topic_id|id|description|ordinal|parent_code|full_description|
+|-|-|-|-|-|-|
+|1|2|Total: Accommodation type|1|NULL|Total\ Accommodation type|
+|1|3|Unshared dwelling|2|NULL|Unshared dwelling|
+|1|4|Whole house or bungalow|3|3|Unshared dwelling\ Whole house or bungalow|
+|1|5|Detached|4|4|Unshared dwelling\ Whole house or bungalow\ Detached|
+|1|6|Semi-detached|5|4|Unshared dwelling\ Whole house or bungalow\ Semi-detached|
+|1|7|Terraced(including end-terrace)|6|4|Unshared dwelling\ Whole house or bungalow\ Terraced (including end-terrace)|
