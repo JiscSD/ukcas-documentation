@@ -1,10 +1,11 @@
 # tables/geography_groupings
 
-The `geography_groupings` table returns grouping categories for `geography_areas` which are identified via an `id`.
+The `geography_groupings` table returns grouping categories for `geography_areas` which are identified via an `id`. When combined `top_level_geographies`, a `geography grouping` forms a `geography combination` (such as `Counties` in `Wales`, or `Countries and Groupings` within the `United Kingdom`).
 
 The following `JOIN` queries can be carried out:
 
 - `geography_grouping_id` on the [geography_areas](geography_areas.md) table using `id`.
+- `geography_type_id` on the [top_level_geographies](top_level_geographies.md) table using `id`.
 
 ## What are geography groupings?
 
@@ -47,7 +48,7 @@ This results in the following:
 
 |column|type|use|
 |-|-|-|
-|id|int4|Primary key.|
+|id|int4|Primary key. This is referenced throughout the database and used to form `geography combinations`. For example, `2,007:6` refers to a geography combination of `2,007` (`Wards and Electoral Divisions`) with a top-level geography of `6` (`Scotland`).|
 |abbreviation|varchar(100)|Short code/abbreviation for a grouping, such as `CNTY` for `County`.|
 |name|varchar(100)|An end-user friendly name for a grouping, such as `Wards and Electoral Divisions`.|
 |description|text|An end-user friendly description for a grouping.|
