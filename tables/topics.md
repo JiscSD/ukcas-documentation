@@ -14,11 +14,11 @@ topic_id on the [variables](variables.md) table using id.
 
 ```sql
 SELECT t.ID, t.ABBREVIATION, t.NAME, v.description 
-FROM topics as t 
-    LEFT JOIN variables v 
-    ON v.topic_id = t.id 
-    WHERE t.ID = 3 
-    LIMIT 5;
+  FROM topics as t 
+       LEFT JOIN variables v 
+       ON v.topic_id = t.id 
+       WHERE t.ID = 3 
+       LIMIT 5;
 ```
 
 |id|abbreviation|name|description|

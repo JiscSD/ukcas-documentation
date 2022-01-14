@@ -5,7 +5,7 @@ The following `JOIN` queries can be carried out:
 
 - `id` on the [topics](topics.md) table using `topic_id`.
 
-## What Are variables?
+## What are variables?
 
 `variables` relate to topics in a many to one relationship. Where every [topic](topics.md) is sub-divided into many different variables. These `variables` alongside their parent `topics` represent context of the database as without them the data would just be arbitrary numbers alongside geographical locations.
 

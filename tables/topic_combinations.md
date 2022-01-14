@@ -10,8 +10,8 @@ Let's say that you have a topic within the [topics](topics.md) table and you wan
 
 ```sql
 SELECT ID, COMBINATION
-FROM topic_combinations
-WHERE ARRAY['AGE'] <@ ARRAY[combination]
+  FROM topic_combinations
+ WHERE ARRAY['AGE'] <@ ARRAY[combination]
 ```
 
 |id|combination|geography_combinations|
