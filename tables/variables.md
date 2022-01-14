@@ -5,16 +5,17 @@ The following `JOIN` queries can be carried out:
 
 - `id` on the [topics](topics.md) table using `topic_id`.
 
-## What are variables?
+## What Are variables?
 
 `variables` relate to topics in a many to one relationship. Where every [topic](topics.md) is sub-divided into many different variables. These `variables` alongside their parent `topics` represent context of the database as without them the data would just be arbitrary numbers alongside geographical locations.
 
-## Example use
+## Example Use
 
 I want to identify every child `variable` for the `topic` `SEX`. We will start by identidying the `id` for the chosen `topic` of `SEX`.
 
 ```sql
-SELECT id, abbreviation, description  FROM c2011_meta.topics 
+SELECT id, abbreviation, description  
+FROM c2011_meta.topics 
 WHERE abbreviation = 'SEX';
 ```
 
@@ -27,10 +28,11 @@ output:
 Now that we know the ID of the desired topic is `64` we can do a JOIN with the `variables` table in order to find out the corresponding `variables`.
 
 ```sql
-SELECT topic_id, c2011_meta.variables.description FROM c2011_meta.variables 
-left join c2011_meta.topics
-on c2011_meta.variables.topic_id = c2011_meta.topics.id
-where c2011_meta.topics.id = 64
+SELECT topic_id, c2011_meta.variables.description 
+FROM c2011_meta.variables 
+    LEFT JOIN c2011_meta.topics
+    ON c2011_meta.variables.topic_id = c2011_meta.topics.id
+    WHERE c2011_meta.topics.id = 64
 ```
 
 Which gives us the following result:
@@ -53,10 +55,11 @@ Which gives us the following result:
 |full_description|text|A longer version of the description field|
 
 
-## Sample query
+## Sample Query
 
 ```sql
-SELECT topic_id, id, description, ordinal, parent_code, full_description FROM c2011_meta.variables;
+SELECT topic_id, id, description, ordinal, parent_code, full_description 
+FROM c2011_meta.variables;
 ```
 
 Will return the following:

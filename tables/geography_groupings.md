@@ -7,12 +7,16 @@ The following `JOIN` queries can be carried out:
 - `geography_grouping_id` on the [geography_areas](geography_areas.md) table using `id`.
 - `geography_type_id` on the [top_level_geographies](top_level_geographies.md) table using `id`.
 
-## What are geography groupings?
+## What Are geography groupings?
 
 A `geography_groupings` refer to named collection/groupings of `geography_areas`, so if we look at the following query:
 
 ```sql
-select ga.id, ga.description, ga.geography_code, ga.geography_grouping_id, gg.name as geography_grouping_name from geography_areas ga left join geography_groupings gg on gg.id = ga.geography_grouping_id where ga.id = 65;
+SELECT ga.id, ga.description, ga.geography_code, ga.geography_grouping_id, gg.name as geography_grouping_name
+FROM geography_areas ga 
+    LEFT JOIN geography_groupings gg 
+    ON gg.id = ga.geography_grouping_id 
+    WHERE ga.id = 65;
 ```
 
 We can see that `Down` has a geographic grouping of `Local Authorities`:
@@ -21,16 +25,18 @@ We can see that `Down` has a geographic grouping of `Local Authorities`:
 |-|-|-|-|-|
 |65|Down|95NN|2,006|Local Authorities|
 
-## Example use
+## Example Use
 
 You would like to retrieve the number of Local Authorities (`LA`) grouped by `top_level_geographies` along with the top-level `geography_code`:
 
 ```sql
-select tlg.geography_code, tlg.description, count(ga.id) as local_authorities
-from geography_areas ga
-left join geography_groupings gg on ga.geography_grouping_id = gg.id
-left join top_level_geographies tlg on ga.top_level_geography_id = tlg.id
-where gg.abbreviation = 'LA' group by tlg.description, tlg.geography_code;
+SELECT tlg.geography_code, tlg.description, count(ga.id) AS local_authorities
+FROM geography_areas ga
+    LEFT JOIN geography_groupings gg 
+    ON ga.geography_grouping_id = gg.id
+    LEFT JOIN top_level_geographies tlg 
+    ON ga.top_level_geography_id = tlg.id
+    WHERE gg.abbreviation = 'LA' group by tlg.description, tlg.geography_code;
 
 ```
 
@@ -56,10 +62,11 @@ This results in the following:
 |geography_area_count|int4|The number of `geography_areas` within the grouping.|
 |description_extended|text|An extended end-user friendly description for a grouping.|
 
-## Sample query
+## Sample Query
 
 ```sql
-select id, abbreviation, name, description, top_level_geography_id, geography_area_count from geography_groupings;
+SELECT id, abbreviation, name, description, top_level_geography_id, geography_area_count 
+FROM geography_groupings;
 ```
 
 Will return the following (**Note**: This excludes `description_extended` for ease of viewing):

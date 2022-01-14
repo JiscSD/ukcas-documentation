@@ -1,17 +1,17 @@
 # tables/topic_combinations
 
-## What is topic_combinations?
+## What Are topic_combinations?
 The `topic_combinations` table lists out the available `topic` combinations for each possible set of `geography_combinations`.
 
 Once a user has selected what locations to filter by, they will then be prompted to select topics alongside corresponding filters. However the data has been setup so that only certain combinations of `variables` can be selected depending on what [geography_combinations](geography_combinations.md)  have been chosen. This is to stop users manipulating data to identify individuals using the data.
 
-## Example use
+## Example Use
 Let's say that you have a topic within the [topics](topics.md) table and you want to check what topic combinations that topic fits into
 
 ```sql
-select ID, COMBINATION
-from topic_combinations
-where ARRAY['AGE'] <@ ARRAY[combination]
+SELECT ID, COMBINATION
+FROM topic_combinations
+WHERE ARRAY['AGE'] <@ ARRAY[combination]
 ```
 
 |id|combination|geography_combinations|
@@ -40,10 +40,12 @@ This query is particularly useful after the user has selected their first (`prim
 |units|_int4|units are `variables` that are guaranteed to be present as part of the selected topic combination.|
 
 
-## Sample query
+## Sample Query
 
 ```sql
-SELECT ID, COMBINATION, GEOGRAPHY_COMBINATIONS, TOP_LEVEL_GEOGRAPHY, TITLE FROM topics WHERE ID = 3;
+SELECT ID, COMBINATION, GEOGRAPHY_COMBINATIONS, TOP_LEVEL_GEOGRAPHY, TITLE 
+FROM topics 
+WHERE ID = 3;
 ```
 
 This query will return the following table.

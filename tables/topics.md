@@ -1,19 +1,24 @@
 # tables/topics
 
 
-## What are Topics?
+## What Are Topics?
 The `topics` table details different topics that can be selected and when combined with subsequent `variables` allow users to filter down the data. Some examples of `topics` are: `Age`, `Country of Birth`, `Economic Activity`. 
 
 Each topic then has a number of children variables that are stored in the [variables](variables.md) table in a one to many relation.
 e.g. the Topic `AGE` has a `variable` of `Age 0 - 4`, `Age 5 to 7` etc
 
-## Example use
+## Example Use
 The following are some examples of JOIN queries
 
 topic_id on the [variables](variables.md) table using id.
 
 ```sql
-SELECT t.ID, t.ABBREVIATION, t.NAME, v.description FROM topics as t left join variables v ON v.topic_id = t.id WHERE t.ID = 3 limit 5;
+SELECT t.ID, t.ABBREVIATION, t.NAME, v.description 
+FROM topics as t 
+    LEFT JOIN variables v 
+    ON v.topic_id = t.id 
+    WHERE t.ID = 3 
+    LIMIT 5;
 ```
 
 |id|abbreviation|name|description|
@@ -35,10 +40,12 @@ SELECT t.ID, t.ABBREVIATION, t.NAME, v.description FROM topics as t left join va
 |top_level_geography_coverage|_int4|an array of what geographies from the `top_level_geographies` table these topics are available for|
 
 
-## Sample query
+## Sample Query
 
 ```sql
-SELECT ID, ABBREVIATION, NAME, DESCRIPTION, ORDINAL, TOP_LEVEL_GEOGRAPHY_COVERAGE FROM topics WHERE ID = 3;
+SELECT ID, ABBREVIATION, NAME, DESCRIPTION, ORDINAL, TOP_LEVEL_GEOGRAPHY_COVERAGE 
+FROM topics 
+WHERE ID = 3;
 ```
 
 This query will return the following table.
