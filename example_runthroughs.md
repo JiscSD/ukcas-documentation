@@ -1,10 +1,9 @@
-## how many people are in fulltime employment in wales
-
+## How many people are in full-time employment in Wales?
 
 First a new user decides what geography they want to query
 
 ```sql
-SELECT * FROM c2011_meta.top_level_geographies
+SELECT * FROM c2011_meta.top_level_geographies;
 ```
 |geography_type_id|id|description|geography_code|hidden_from_ui|
 |-|-|-|-|-|
@@ -49,7 +48,7 @@ The above query provides us with every topic combination for the selected geogra
 |{AGE,DAYPOP,ECOACT,TENURE,UNIT,URESPOP}|
 |...
 
-We now have a list of all the possible topic combinations for Wales which we display to the user. The user wants to know how many people are in fulltime employment for the selected gography. So for this instance they select: `economic activity` (ECOACT).
+We now have a list of all the possible topic combinations for Wales which we display to the user. The user wants to know how many people are in full-time employment for the selected gography. So for this instance they select: `economic activity` (ECOACT).
 
 Now we need to query the table for only topic combinations that contain `economic activity` and match out geography selection.
 ```sql
@@ -74,13 +73,14 @@ Now user selects the `topic` group containing `economic activity` that they desi
 
 `AGE,ECOACT,UNIT`
 
-Finally we now query `variable_combinations` for the relevant `cellnames` and `tablenames` that relate to the data.
+We now query `variable_combinations` for the relevant `cellnames` and `tablenames` that relate to the data.
+
 ```sql
 SELECT table_column_name, topic_variable_combination, description, table_name
 FROM c2011_meta.variable_combinations
 WHERE ARRAY['AGE','ECOACT','UNIT'] = c2011_meta.variable_combinations.topic_combination;
+```
 
-``` 
 |name|topic_variable_combination|description|table_name|
 |-|-|-|-|
 |QS601SC0010|{AGE:46,ECOACT:570,UNIT:1962}|Age 16 to 74 // Economically active\ Full-time students // Persons|QS601_0_SC_MRG_RCD_AGG|
@@ -90,9 +90,11 @@ WHERE ARRAY['AGE','ECOACT','UNIT'] = c2011_meta.variable_combinations.topic_comb
 
 
 To get the number of citizens each `name` and `table_name` this corresponds to we can do a query like so:
+
 ```sql
-SELECT geocodeid, QS601SC0010  from QS601_0_SC_MRG_RCD_AGG
+SELECT geocodeid, QS601SC0010 from c2011.QS601_0_SC_MRG_RCD_AGG;
 ```
+
 |geocodeid|QS601SC0010|
 |-|-|
 |354549|78|
