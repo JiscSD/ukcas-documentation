@@ -7,20 +7,20 @@ The following `JOIN` queries can be carried out:
 - `id` on the [top_level_geographies](top_level_geographies.md) table using `top_level_geography_id`.
 - `id` on the [geography_grouping](geography_grouping.md) table using `geography_grouping_id`.
 
-## What Are geography areas?
+## What are geography areas?
 
 A geography area relates to geography within `top_level_geographies`, for instance the geography area of `Cumbria` is located within the top-level geography of `England`.
 
-## Example Use
+## Example use
 
 Searching within a top-level geography of `Wales`, you would find the geography area of `Gwynedd`, which can be seen through the following `JOIN` on `top_level_geographies`:
 
 ```sql
 SELECT ga.id, tlg.description AS top_level_geography, ga.geography_grouping_id, ga.description, ga.geography_code 
-FROM geography_areas ga 
-    LEFT JOIN top_level_geographies tlg 
-    ON ga.top_level_geography_id = tlg.id 
-    WHERE ga.id = 435;
+  FROM geography_areas ga 
+       LEFT JOIN top_level_geographies tlg 
+       ON ga.top_level_geography_id = tlg.id 
+       WHERE ga.id = 435;
 ```
 
 |id|top_level_geography|geography_grouping_id|description|geography_code|
@@ -39,12 +39,12 @@ From this you could then continue to search for the number of people by `AGE` an
 |description|varchar(255)|An end-user friendly description for the geography.|
 |geography_code|varchar(50)|A unique identifier for a geography.|
 
-## Sample Query
+## Sample query
 
 ```sql
 SELECT id, top_level_geography_id, geography_grouping_id, description, geography_code 
-FROM geography_areas 
-WHERE id = 17;
+  FROM geography_areas 
+ WHERE id = 17;
 ```
 
 Returns the following:

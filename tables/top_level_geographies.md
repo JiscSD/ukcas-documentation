@@ -7,11 +7,11 @@ The following `JOIN` queries can be carried out:
 - `geography_type_id` on the [geography_groupings](geography_groupings.md) table using `geography_type_id`.
 - `top_level_geography_id` on the [geography_areas](geography_areas.md) table using `id`.
 
-## What Are top-level geographies?
+## What are top-level geographies?
 
 A `top-level geography` refers to the first (highest) geography level selectable. This is usually chosen at the start of a search by an end-user.
 
-## Example Use
+## Example use
 
 If searching for a combination of everyone in `Scotland` shown by `age`, you would first select a top-level geography of `Scotland` before selecting a lower-level geography (such as `Local Authority`), and finally the `age` topic.
 
@@ -26,11 +26,11 @@ If searching for a combination of everyone in `Scotland` shown by `age`, you wou
 |hidden_from_ui|bool|Whether a geography should be visible to the end user.|
 
 
-## Sample Query
+## Sample query
 
 ```sql
 SELECT id, geography_type_id, description, geography_code, hidden_from_ui 
-FROM top_level_geographies;
+  FROM top_level_geographies;
 ```
 
 Will return the following:

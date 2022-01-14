@@ -1,13 +1,13 @@
 # tables/topics
 
 
-## What Are Topics?
+## What are topics?
 The `topics` table details different topics that can be selected and when combined with subsequent `variables` allow users to filter down the data. Some examples of `topics` are: `Age`, `Country of Birth`, `Economic Activity`. 
 
 Each topic then has a number of children variables that are stored in the [variables](variables.md) table in a one to many relation.
 e.g. the Topic `AGE` has a `variable` of `Age 0 - 4`, `Age 5 to 7` etc
 
-## Example Use
+## Example use
 The following are some examples of JOIN queries
 
 topic_id on the [variables](variables.md) table using id.
@@ -40,12 +40,12 @@ FROM topics as t
 |top_level_geography_coverage|_int4|an array of what geographies from the `top_level_geographies` table these topics are available for|
 
 
-## Sample Query
+## Sample query
 
 ```sql
-SELECT ID, ABBREVIATION, NAME, DESCRIPTION, ORDINAL, TOP_LEVEL_GEOGRAPHY_COVERAGE 
-FROM topics 
-WHERE ID = 3;
+SELECT id, abbreviation, name, description, ordnial, top_level_geography_coverage 
+  FROM topics 
+ WHERE id = 3;
 ```
 
 This query will return the following table.
