@@ -1,6 +1,6 @@
 # tables/topic_combinations
 
-## What is topic_combinations?
+## What are topic_combinations?
 The `topic_combinations` table lists out the available `topic` combinations for each possible set of `geography_combinations`.
 
 Once a user has selected what locations to filter by, they will then be prompted to select topics alongside corresponding filters. However the data has been setup so that only certain combinations of `variables` can be selected depending on what [geography_combinations](geography_combinations.md)  have been chosen. This is to stop users manipulating data to identify individuals using the data.
@@ -9,9 +9,11 @@ Once a user has selected what locations to filter by, they will then be prompted
 Let's say that you have a topic within the [topics](topics.md) table and you want to check what topic combinations that topic fits into
 
 ```sql
-select ID, COMBINATION
-from topic_combinations
-where ARRAY['AGE'] <@ ARRAY[combination]
+SELECT id, 
+       combination,
+       geography_combinations
+  FROM c2011_meta.topic_combinations
+ WHERE ARRAY['AGE'] <@ ARRAY[combination]
 ```
 
 |id|combination|geography_combinations|
@@ -43,12 +45,20 @@ This query is particularly useful after the user has selected their first (`prim
 ## Sample query
 
 ```sql
-SELECT ID, COMBINATION, GEOGRAPHY_COMBINATIONS, TOP_LEVEL_GEOGRAPHY, TITLE FROM topics WHERE ID = 3;
+SELECT id, 
+       variable_combination_count, 
+       combination, 
+       geography_combinations, 
+       title 
+  FROM c2011_meta.topic_combinations
 ```
 
-This query will return the following table.
+This query will return the following table:
 
-|id|abbreviation|name|description|ordinal|top_level_geography|
-|-|-|-|-|-|-|
-|3|AGE|Age|Age is derived from the date of birth question and is a person's age at their last birthday, at 27 March 2011. Dates of birth that imply an age over 115 are treated as invalid and the person's age is imputed. Infants less than one year old are classified as 0 years of age.|6|{1}|
-
+|id|variable_combination_count|combination|geography_combinations|title|
+|-|-|-|-|-|
+|106|513{AGE,COBCON,ECOACT,INDUST,SEX,UNIT}|{2003:5}|Country of birth (condensed for Northern Ireland) by Industry by Sex 2011|
+|107|945|{AGE,COBCON,ECOACT,OGRPMIN,SEX,UNIT}|{2003:5}|Country of birth (condensed for Northern Ireland) by Economic activity by Occupation (minor groups) by Sex 2011|
+|108|1890|{AGE,COBCON,ECOACT,SEX,UNIT}|{2003:5}|Age by Country of birth (condensed) by Economic activity by Sex 2011|
+|147|97|{AGE,DAYPOP,ECOACT,NSSEC,UNIT}|{2002:3,2003:4,2003:5,2003:7,2004:4,2005:4,2006:4,2006:5,2006:7,2007:5,2008:4,2008:7,2009:5,2011:4,2013:4,2013:7}|NS-SeC (National Statistics Socio-economic Classification) (Workplace Population) 2011|
+|99|994{AGE,COB,MNLANNI,UNIT}|{2003:5,2006:5}|Country of birth by Main language (Northern Ireland)|2011|

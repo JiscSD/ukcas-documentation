@@ -13,9 +13,13 @@ In order to query this though one has to know the following information:
 With this information you can get the `name` and `table_names` for a particular entry.
 e.g. 
 ```sql
-SELECT name, geography_combination, combination, table_name, description  
-FROM c2011_meta.variable_combinations
-WHERE ARRAY['AGE:50','ECOACT:565','SEX:1933','UNIT:1962'] <@ ARRAY[topic_variable_combination]
+SELECT name, 
+       geography_combination, 
+       combination, 
+       table_name, 
+       description  
+  FROM c2011_meta.variable_combinations
+ WHERE ARRAY['AGE:50','ECOACT:565','SEX:1933','UNIT:1962'] <@ ARRAY[topic_variable_combination]
 ```
 output:
 |name|geography_combination|topic_variable_combination|table_name|description
@@ -25,7 +29,9 @@ output:
 Using these results we can then query the data table for the results using:
 
 ```sql
-SELECT DC6107EW0610, geocodeid FROM c2011.DC6107_0_EW_MRG_RCD_AGG;
+SELECT DC6107EW0610, 
+       geocodeid 
+  FROM c2011.DC6107_0_EW_MRG_RCD_AGG;
 ```
 which results:
 |dc6107ew0610|geocodeid|
