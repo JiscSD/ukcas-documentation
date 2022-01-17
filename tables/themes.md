@@ -44,7 +44,7 @@ SELECT theme,
 SELECT id, 
        theme, 
        description 
-  FROM THEMES;
+  FROM c2011_meta.themes;
 ```
 
 Below is some of the data that this query will return.
