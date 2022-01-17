@@ -13,12 +13,15 @@ The following are some examples of JOIN queries
 topic_id on the [variables](variables.md) table using id.
 
 ```sql
-SELECT t.ID, t.ABBREVIATION, t.NAME, v.description 
-  FROM topics as t 
-       LEFT JOIN variables v 
-       ON v.topic_id = t.id 
-       WHERE t.ID = 3 
-       LIMIT 5;
+SELECT c2011_meta.topics.id, 
+       c2011_meta.topics.abbreviation, 
+       c2011_meta.topics.name, 
+       c2011_meta.variables.description 
+  FROM c2011_meta.topics 
+       LEFT JOIN c2011_meta.variables
+       ON c2011_meta.variables.topic_id = c2011_meta.topics.id 
+ WHERE c2011_meta.topics.ID = 3 
+ LIMIT 5;
 ```
 
 |id|abbreviation|name|description|
@@ -43,8 +46,13 @@ SELECT t.ID, t.ABBREVIATION, t.NAME, v.description
 ## Sample query
 
 ```sql
-SELECT id, abbreviation, name, description, ordnial, top_level_geography_coverage 
-  FROM topics 
+SELECT id, 
+       abbreviation, 
+       name, 
+       description, 
+       ordinal, 
+       top_level_geography_coverage 
+  FROM c2011_meta.topics
  WHERE id = 3;
 ```
 

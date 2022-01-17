@@ -11,6 +11,25 @@ The `themes` table exists to help categorise topics into different parent themes
 The following `JOIN` queries could be carried out if the [topics](topics.md) table had a `theme_id` column:
 
 `theme_id` on the [topics](topics.md) table using `id`.
+
+The below query would in theory, display all of the topics that are part of the parent theme `People`.
+```sql
+SELECT theme,
+       theme_id,
+       c2011_meta.themes.description,
+       name
+       c2011_meta.topics.description AS topic_description
+  FROM c2011_meta.themes
+       LEFT JOIN c2011_meta.topics 
+       ON c2011_meta.topics.theme_id = themes.id 
+ WHERE themes.id = 1;
+ ```
+
+|theme|theme_id|description|name|topic_description|
+|-|-|-|-|-|
+|people|1|This Theme contains topics which describe people|Age|Age is derived from the date of birth question and is a person's age at their last birthday, at 27 March 2011. Dates of birth that imply an age over 115 are treated as invalid and the person's age is imputed. Infants less than one year old are classified as 0 years of age.|
+|...|...|...|...|...|
+
 ## Schema
 
 |column|type|use|
@@ -22,7 +41,9 @@ The following `JOIN` queries could be carried out if the [topics](topics.md) tab
 ## Sample query
 
 ```sql
-SELECT id, theme, description 
+SELECT id, 
+       theme, 
+       description 
   FROM THEMES;
 ```
 

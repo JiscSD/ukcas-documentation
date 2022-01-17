@@ -14,7 +14,9 @@ The following `JOIN` queries can be carried out:
 I want to identify every child `variable` for the `topic` `SEX`. We will start by identidying the `id` for the chosen `topic` of `SEX`.
 
 ```sql
-SELECT id, abbreviation, description  
+SELECT id, 
+       abbreviation, 
+       description  
   FROM c2011_meta.topics 
  WHERE abbreviation = 'SEX';
 ```
@@ -28,11 +30,12 @@ output:
 Now that we know the ID of the desired topic is `64` we can do a JOIN with the `variables` table in order to find out the corresponding `variables`.
 
 ```sql
-SELECT topic_id, c2011_meta.variables.description 
+SELECT topic_id, 
+       c2011_meta.variables.description 
   FROM c2011_meta.variables 
        LEFT JOIN c2011_meta.topics
        ON c2011_meta.variables.topic_id = c2011_meta.topics.id
-       WHERE c2011_meta.topics.id = 64
+ WHERE c2011_meta.topics.id = 64
 ```
 
 Which gives us the following result:
@@ -58,7 +61,12 @@ Which gives us the following result:
 ## Sample query
 
 ```sql
-SELECT topic_id, id, description, ordinal, parent_code, full_description 
+SELECT topic_id, 
+       id, 
+       description, 
+       ordinal, 
+       parent_code, 
+       full_description 
   FROM c2011_meta.variables;
 ```
 
