@@ -42,7 +42,7 @@ The other table that this table relates to is [geography_groupings](geography_gr
 |2012|MWED|Merging Wards and Electoral Divisions|
 |2013|WZLYR|Workplace Zone Layer|
 
-If you combine the two values then you get the resulting `geography_area` which is referenced in the tables [topic_combinations](topic_combinations.md) as `geography_combinations` and [variable_combinations](variable_combinations.md) as `geography_combination`.The data is stored with the format of: ${geography_grouping_id}:${top_level_geography_id} e.g. 2006:4 (which in this case represents the isle of Wight local authority). 
+If you combine the two values then you get the resulting `geography_area` which is referenced in the tables [topic_combinations](topic_combinations.md) as `geography_combinations` and [variable_combinations](variable_combinations.md) as `geography_combination`.The data is stored with the format of: ${geography_grouping_id}:${top_level_geography_id} e.g. 2006:4 (which in this case represents the Isle of Wight local authority). 
 ## Example use
 
 Searching within a top-level geography of `Wales`, you would find the `geography_area` of `Gwynedd`, which can be seen through the following `JOIN` on `top_level_geographies`:
@@ -68,10 +68,10 @@ SELECT geography_areas.id,
 |column|type|use|
 |-|-|-|
 |id|int4|Primary key.|
-|top_level_geography_id|int4|Foreign key for [top_level_geographies](top_level_geographies.md) (see the `What are geography areas` section for how this relatest to external tables).|
+|top_level_geography_id|int4|Foreign key for [top_level_geographies](top_level_geographies.md) (see the `What are geography areas` section for how this relates to external tables).|
 |geography_grouping_id|int4|Relates to a geographical group in `geography_groupings`, eg. `Gwynedd` has a value of `2,006` which relates to the grouping of `Local Authorities`.|
 |description|varchar(255)|An end-user friendly description for the geography.|
-|geography_code|varchar(50)|foregin key for [geography_groupings](geography_groupings.md) (see the `What are geography areas` section for how this relatest to external tables)|
+|geography_code|varchar(50)|foreign key for [geography_groupings](geography_groupings.md) (see the `What are geography areas` section for how this relates to external tables)|
 
 ## Sample query
 

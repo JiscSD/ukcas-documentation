@@ -40,7 +40,7 @@ A table that `top_level_geographies` relates to is [geography_groupings](geograp
 |2012|MWED|Merging Wards and Electoral Divisions|
 |2013|WZLYR|Workplace Zone Layer|
 
-If you combine the two values then you get the resulting `geography_area` which is referenced in the tables [geography_areas](geography_areas.md)[topic_combinations](topic_combinations.md) as `geography_combinations` and [variable_combinations](variable_combinations.md) as `geography_combination`.The data in [topic_combinations](topic_combinations.md) and [variable_combinations](variable_combinations.md) is stored with the format of: ${geography_grouping_id}:${top_level_geography_id} e.g. 2006:4 (which in this case represents the isle of Wight local authority). While [geography_areas](geography_areas.md) gives a description on what the areas represent.
+If you combine the two values then you get the resulting `geography_area` which is referenced in the tables [geography_areas](geography_areas.md)[topic_combinations](topic_combinations.md) as `geography_combinations` and [variable_combinations](variable_combinations.md) as `geography_combination`.The data in [topic_combinations](topic_combinations.md) and [variable_combinations](variable_combinations.md) is stored with the format of: ${geography_grouping_id}:${top_level_geography_id} e.g. 2006:4 (which in this case represents the Isle of Wight local authority). While [geography_areas](geography_areas.md) gives a description on what the areas represent.
 ## Example use
 
 Let's say you want to list out all of the `geography_areas` that have a `top_level_geography_id` of `6` (Scotland). YOu could perform the following join on the [geography_areas](geography_areas.md) table to get the data:
