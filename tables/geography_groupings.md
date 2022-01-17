@@ -12,7 +12,15 @@ The following `JOIN` queries can be carried out:
 A `geography_groupings` refer to named collection/groupings of `geography_areas`, so if we look at the following query:
 
 ```sql
-select ga.id, ga.description, ga.geography_code, ga.geography_grouping_id, gg.name as geography_grouping_name from geography_areas ga left join geography_groupings gg on gg.id = ga.geography_grouping_id where ga.id = 65;
+SELECT c2011_meta.geography_groupings.id, 
+       c2011_meta.geography_areas.description,
+       geography_code, 
+       geography_grouping_id, 
+       name
+  FROM c2011_meta.geography_areas
+       LEFT JOIN c2011_meta.geography_groupings 
+       ON geography_groupings.id = geography_areas.geography_grouping_id 
+ WHERE geography_areas.id = 65;
 ```
 
 We can see that `Down` has a geographic grouping of `Local Authorities`:
@@ -26,11 +34,14 @@ We can see that `Down` has a geographic grouping of `Local Authorities`:
 You would like to retrieve the number of Local Authorities (`LA`) grouped by `top_level_geographies` along with the top-level `geography_code`:
 
 ```sql
-select tlg.geography_code, tlg.description, count(ga.id) as local_authorities
-from geography_areas ga
-left join geography_groupings gg on ga.geography_grouping_id = gg.id
-left join top_level_geographies tlg on ga.top_level_geography_id = tlg.id
-where gg.abbreviation = 'LA' group by tlg.description, tlg.geography_code;
+SELECT c2011_meta.top_level_geographies.geography_code, c2011_meta.top_level_geographies.description, count(c2011_meta.geography_areas.id) AS local_authorities
+  FROM c2011_meta.geography_areas
+       LEFT JOIN c2011_meta.geography_groupings
+       ON c2011_meta.geography_areas.geography_grouping_id = c2011_meta.geography_groupings.id
+       LEFT JOIN c2011_meta.top_level_geographies
+       ON c2011_meta.geography_areas.top_level_geography_id = c2011_meta.top_level_geographies.id
+ WHERE c2011_meta.geography_groupings.abbreviation = 'LA' 
+ GROUP BY c2011_meta.top_level_geographies.description, c2011_meta.top_level_geographies.geography_code;
 
 ```
 
@@ -59,7 +70,13 @@ This results in the following:
 ## Sample query
 
 ```sql
-select id, abbreviation, name, description, top_level_geography_id, geography_area_count from geography_groupings;
+SELECT id, 
+       abbreviation, 
+       name, 
+       description, 
+       top_level_geography_id, 
+       geography_area_count 
+  FROM c2011_meta.geography_groupings;
 ```
 
 Will return the following (**Note**: This excludes `description_extended` for ease of viewing):

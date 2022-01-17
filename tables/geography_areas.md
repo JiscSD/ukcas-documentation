@@ -16,7 +16,15 @@ A geography area relates to geography within `top_level_geographies`, for instan
 Searching within a top-level geography of `Wales`, you would find the geography area of `Gwynedd`, which can be seen through the following `JOIN` on `top_level_geographies`:
 
 ```sql
-SELECT ga.id, tlg.description as top_level_geography, ga.geography_grouping_id, ga.description, ga.geography_code FROM geography_areas ga left join top_level_geographies tlg on ga.top_level_geography_id = tlg.id WHERE ga.id = 435;
+SELECT geography_areas.id,
+       top_level_geographies.description,
+       geography_areas.geography_grouping_id,
+       geography_areas.description,
+       geography_areas.geography_code
+  FROM c2011_meta.geography_areas
+       LEFT JOIN c2011_meta.top_level_geographies 
+       ON c2011_meta.geography_areas.top_level_geography_id = top_level_geographies.id 
+ WHERE geography_areas.id = 435;
 ```
 
 |id|top_level_geography|geography_grouping_id|description|geography_code|
@@ -38,7 +46,13 @@ From this you could then continue to search for the number of people by `AGE` an
 ## Sample query
 
 ```sql
-SELECT id, top_level_geography_id, geography_grouping_id, description, geography_code FROM geography_areas WHERE id = 17;
+SELECT id, 
+       top_level_geography_id, 
+       geography_grouping_id, 
+       description, 
+       geography_code 
+  FROM c2011_meta.geography_areas 
+ WHERE id = 17;
 ```
 
 Returns the following:
