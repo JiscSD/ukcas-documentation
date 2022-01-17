@@ -14,6 +14,8 @@ This section contains information about the UKCAS PostgreSQL database. This incl
 - [variable_combinations](variable_combinations.md)
 - [variables](variables.md)
 
+## Style Guide
+All of our documentation for the tables adheres to the [SQL style guide](https://www.sqlstyle.guide/#do).
 ## Entity Relationship Diagram (ER)
 
 ![Entity Relationship Diagram (ER)](/tables/ERD.png)
