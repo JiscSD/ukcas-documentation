@@ -9,7 +9,7 @@ The following `JOIN` queries can be carried out:
 
 ## What are geography area relations?
 
-A geography area relation is a parent/child relationship between [geography_areas](geography_areas.md), or [geography_groupings](geography_grouping.md). This helps provide further context to a geographic location. The data is entirely dependant on these relationships, and on it's own does not contain much context.
+A geography area relation is a parent/child relationship between [geography_areas](geography_areas.md), or [geography_groupings](geography_grouping.md), This helps provide further context to a geographic location. The data is entirely dependant on these relationships, and on it's own does not contain much context.
 
 ## Example use
 
