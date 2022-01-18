@@ -1,7 +1,7 @@
 # tables/topics
 
 
-## What are Topics?
+## What are topics?
 The `topics` table details different topics that can be selected and when combined with subsequent `variables` allow users to filter down the data. Some examples of `topics` are: `Age`, `Country of Birth`, `Economic Activity`. 
 
 Each topic then has a number of children variables that are stored in the [variables](variables.md) table in a one to many relation.
@@ -13,7 +13,15 @@ The following are some examples of JOIN queries
 topic_id on the [variables](variables.md) table using id.
 
 ```sql
-SELECT t.ID, t.ABBREVIATION, t.NAME, v.description FROM topics as t left join variables v ON v.topic_id = t.id WHERE t.ID = 3 limit 5;
+SELECT c2011_meta.topics.id, 
+       c2011_meta.topics.abbreviation, 
+       c2011_meta.topics.name, 
+       c2011_meta.variables.description 
+  FROM c2011_meta.topics 
+       LEFT JOIN c2011_meta.variables
+       ON c2011_meta.variables.topic_id = c2011_meta.topics.id 
+ WHERE c2011_meta.topics.ID = 3 
+ LIMIT 5;
 ```
 
 |id|abbreviation|name|description|
@@ -38,7 +46,14 @@ SELECT t.ID, t.ABBREVIATION, t.NAME, v.description FROM topics as t left join va
 ## Sample query
 
 ```sql
-SELECT ID, ABBREVIATION, NAME, DESCRIPTION, ORDINAL, TOP_LEVEL_GEOGRAPHY_COVERAGE FROM topics WHERE ID = 3;
+SELECT id, 
+       abbreviation, 
+       name, 
+       description, 
+       ordinal, 
+       top_level_geography_coverage 
+  FROM c2011_meta.topics
+ WHERE id = 3;
 ```
 
 This query will return the following table.

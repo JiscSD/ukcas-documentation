@@ -9,11 +9,63 @@ The following `JOIN` queries can be carried out:
 
 ## What are top-level geographies?
 
-A `top-level geography` refers to the first (highest) geography level selectable. This is usually chosen at the start of a search by an end-user.
+A `top-level geography` refers to the first (highest) geography level selectable. This is usually chosen at the start of a search by an end-user e.g. Wales (7) Below is a table of all the available top level geographies.
 
+|top_level_geography_id|description|
+|-|-|
+|1|United Kingdom|
+|2|Great Britain|
+|3|England and Wales|
+|4|England|
+|5|Northern Ireland|
+|6|Scotland|
+|7|Wales|
+
+A table that `top_level_geographies` relates to is [geography_groupings](geography_groupings.md). The geography_grouping defines how granular a particular area is based on one of 14 different classifications ranging from as broad as the entire UK (`geography_grouping_id` = 2000), all the way down to workplace zone layers (`geography_grouping_id` = 2013).See below for a list of the available geography_groupings.
+
+|geography_grouping_id|abbreviation|name|
+|-|-|-|
+|2000|UK|United Kingdom|
+|2001|GB|Great Britain|
+|2002|EW|England and Wales|
+|2003|CTRY|Countries and Groupings|
+|2004|RGN|Regions|
+|2005|CNTY|Counties|
+|2006|LA|Local Authorities|
+|2007|WED|Wards and Electoral Divisions|
+|2008|MSOAIZ|Middle Super Output Areas and Intermediate Zones|
+|2009|LSOADZ|Lower Super Output Areas and Data Zones|
+|2010|OASA|Output Areas and Small Areas|
+|2011|MLA|Merging Local Authorities|
+|2012|MWED|Merging Wards and Electoral Divisions|
+|2013|WZLYR|Workplace Zone Layer|
+
+If you combine the two values then you get the resulting `geography_area` which is referenced in the tables [geography_areas](geography_areas.md)[topic_combinations](topic_combinations.md) as `geography_combinations` and [variable_combinations](variable_combinations.md) as `geography_combination`.The data in [topic_combinations](topic_combinations.md) and [variable_combinations](variable_combinations.md) is stored with the format of: ${geography_grouping_id}:${top_level_geography_id} e.g. 2006:4 (which in this case represents the Isle of Wight local authority). While [geography_areas](geography_areas.md) gives a description on what the areas represent.
 ## Example use
 
-If searching for a combination of everyone in `Scotland` shown by `age`, you would first select a top-level geography of `Scotland` before selecting a lower-level geography (such as `Local Authority`), and finally the `age` topic.
+Let's say you want to list out all of the `geography_areas` that have a `top_level_geography_id` of `6` (Scotland). YOu could perform the following join on the [geography_areas](geography_areas.md) table to get the data:
+
+```sql
+SELECT geography_grouping_id,
+       c2011_meta.geography_areas.description,
+       top_level_geography_id,
+       c2011_meta.top_level_geographies.description AS top_level_description
+  FROM c2011_meta.geography_areas
+       LEFT JOIN c2011_meta.top_level_geographies 
+       ON c2011_meta.geography_areas.top_level_geography_id = c2011_meta.top_level_geographies.id 
+ WHERE c2011_meta.geography_areas.top_level_geography_id = 6;
+```
+
+Results:
+
+|geography_grouping_id|description|top_level_geography_id|
+|-|-|-|
+|2003|Scotland|6|
+|2006|Clackmannanshire|6|
+|2006|Dumfries & Galloway|6|
+|2006|East Ayrshire|6|
+|2006|East Lothian|6|
+|...|...|...|
 
 ## Schema
 
@@ -29,7 +81,12 @@ If searching for a combination of everyone in `Scotland` shown by `age`, you wou
 ## Sample query
 
 ```sql
-SELECT id, geography_type_id, description, geography_code, hidden_from_ui FROM top_level_geographies;
+SELECT id, 
+       geography_type_id, 
+       description, 
+       geography_code, 
+       hidden_from_ui 
+  FROM top_level_geographies;
 ```
 
 Will return the following:
