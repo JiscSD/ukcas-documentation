@@ -109,5 +109,34 @@ SELECT geocodeid,
 |354552|63|
 |354553|120|
 
-The `geocodeid` refers back to the `geography_area_relations` `child_id` column.
+The `geocodeid` refers back to the `geography_areas` `id` column.
 while the cellname column represents the number of people, for that geography, that match our selection of `topics` and `variables`.
+
+We can go on to query the `geography_areas` table to identify the names of the found `geography_areas`
+
+```sql
+SELECT id, 
+       description 
+  FROM c2011_meta.geography_areas
+ WHERE ARRAY[354549, 354550, 354551, 354552, 354553] @> ARRAY[id]
+```
+
+which returns:
+
+|id|description|
+|-|-|
+|354549|Merryton and Meadowhill|
+|354550|Larkhall Central, Raploch, Millheugh and Burnhead|
+|354551|Hareleeshill|
+|354552|Strutherhill|
+|354553|Stonehouse|
+
+combined with the previous table showing the variable_combination we can now present the end result:
+
+|id|geography_description|variable_combination|population
+|-|-|-|-|
+|354549|Merryton and Meadowhill|Age 16 to 74 // Economically active\ Full-time students // Persons|78|
+|354550|Larkhall Central, Raploch, Millheugh and Burnhead|Age 16 to 74 // Economically active\ Full-time students // Persons|90|
+|354551|Hareleeshill|Age 16 to 74 // Economically active\ Full-time students // Persons|81|
+|354552|Strutherhill|Age 16 to 74 // Economically active\ Full-time students // Persons|63|
+|354553|Stonehouse|Age 16 to 74 // Economically active\ Full-time students // Persons|120|
