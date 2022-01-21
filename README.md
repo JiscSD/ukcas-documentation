@@ -45,7 +45,7 @@ A `top level geography` refers to the first (highest) geography level selectable
 
 ### Geography groups
 
-The geography_grouping defines how granular a particular area is based on one of 14 different classifications ranging from as broad as the entire UK (`geography_grouping_id` = 2000), all the way down to workplace zone layers (`geography_grouping_id` = 2013).See below for a list of the available geography_groupings.
+The `geography grouping` defines how granular a particular area is based on one of 14 different classifications ranging from as broad as the entire UK (`geography_grouping_id` = 2000), all the way down to workplace zone layers (`geography_grouping_id` = 2013).See below for a list of the available geography_groupings.
 
 |id|name|geography_area_count|
 |-|-|-|
@@ -66,11 +66,11 @@ The geography_grouping defines how granular a particular area is based on one of
 
 ### Geography areas
 
-If you combine the two values then you get the resulting `geography_area`. This is stored with the format of: `{geography_grouping_id}:{top_level_geography_id}`. So for example a geography area of `2005:6` would represent the counties of Northern Ireland.
+If you combine the two values then you get the resulting `geography area`. This is stored with the format of: `{geography_grouping_id}:{top_level_geography_id}`. So for example a geography area of `2005:6` would represent the counties of Northern Ireland.
 
 ## Topics and Variables
 
-In the data the `geography_areas` are linked to `topics`, which in turn have their own sets of children that we refer to in this documentation as `variables`. Topics represent high level categories of `variables` e.g. the Topic `AGE` has a set of variables such as: `16 to 24`, `24 to 30` etc.
+In the data the `geography areas` are linked to `topics`, which in turn have their own sets of children that we refer to in this documentation as `variables`. Topics represent high level categories of `variables` e.g. the Topic `AGE` has a set of variables such as: `16 to 24`, `24 to 30` etc.
 
 These `Topics` allow users to filter the data down and refine it to get the results they desire. The data however is grouped in a way that prevents users from refining it down to identify individuals. for example you might only be interested in querying the topic `AGE` for a specific region, but you may have to search the topic_combination: `AGE`, and `Country of Birth` in order to get some results due to the restrictions.
 
