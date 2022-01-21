@@ -70,11 +70,11 @@ If you combine the two values then you get the resulting `geography_area`. This 
 
 ## Topics and Variables
 
-In the data the `geography_areas` are linked to `topics`, which in turn have their own sets of children that we refere to in this documentation as `variables`. Topics represent high level categories of `variables` e.g. the Topic `AGE` has a set of variables such as: `16 to 24`, `24 to 30` etc.
+In the data the `geography_areas` are linked to `topics`, which in turn have their own sets of children that we refer to in this documentation as `variables`. Topics represent high level categories of `variables` e.g. the Topic `AGE` has a set of variables such as: `16 to 24`, `24 to 30` etc.
 
-These `Topics` allow users to filter the data down and refine it to get the results they desire. The data however is grouped in a way that prevents users from refining down to specifically to identify individuals. for example you might only be interested in querying the topic `AGE` for a specific region, but you may have to search the topic_combination: `AGE`, and `Country of Birth` in order to get some results.
+These `Topics` allow users to filter the data down and refine it to get the results they desire. The data however is grouped in a way that prevents users from refining it down to identify individuals. for example you might only be interested in querying the topic `AGE` for a specific region, but you may have to search the topic_combination: `AGE`, and `Country of Birth` in order to get some results due to the restrictions.
 
-Variables represent the fine grained filters that match with the topics. So for example the topic `Country of Birth` might have the variables: `England`, `Germany`, `India` etc.
+Variables represent the fine grained filters that match with the topics. So for example the topic `Country of Birth` might has the variables: `England`, `Germany`, `India` etc.
 
 ```sql
 SELECT id, 
