@@ -7,7 +7,7 @@ The following `JOIN` queries can be carried out:
 
 ## What are variables?
 
-`variables` relate to topics in a many to one relationship. Where every [topic](topics.md) is sub-divided into many different variables. These `variables` alongside their parent `topics` represent context of the database as without them the data would just be arbitrary numbers alongside geographical locations.
+`variables` relate to topics in a many to one relationship. Where every [topic](topics.md) is a parent to multiple different variables. These `variables` alongside their parent `topics` represent context of the database e.g. a `variable` of `16 to 24` is a child of the `topic` `AGE`.
 
 ## Example use
 

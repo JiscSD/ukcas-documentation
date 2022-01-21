@@ -1,5 +1,7 @@
 # UKCAS Project Documentation
 
+UKCAS is a data exploration project that aims to provide current and previous years Census data in an easily accessible format.
+
 
 ## Contents
 
@@ -8,22 +10,24 @@
 
 ## Downloading the development database
 
-We provide a smaller version of the census data for anyone who wants to experiment or build their own data explorer which is available [here](https://ukcas-dev-data.s3.eu-west-1.amazonaws.com/UKCAS_SQL_dump.zip) in the form of an sql dump.
+We provide a smaller version of the census data for anyone who wants to experiment or build their own data explorer in the form of an sql dump.
+
+[Download minimized census data](https://ukcas-dev-data.s3.eu-west-1.amazonaws.com/UKCAS_SQL_dump.zip)
 
 The SQL dump should allow for a minimized version of the database to be establised from there read through the documentation to help understand the structure of the db.
 
 ## Understanding the data
 
-The census data is split up into many seperate tables with their own respective folders. every census years data consists primarily of two schemas: 
+The census data is split up into many seperate tables with their own respective schemas. every census years data consists of two schemas: 
 a `meta data` schema which contains information regarding the context of the data
 and a `data` schema which contains the actual numerical data. In order to query this data you have to proceed through the tables, gathering the meta data that is of interest and process it so that you get the desired result. For an example on how to do this see: [Usage Examples](usage_examples.md).
 
 ## Understanding the geography metadata
 
-In the tables the geography data is described in 3 different ways:
-- `Top level geographies`
-- `Geography groups`
-- `Geography area`
+In the tables the geography data is described in 3 different ways (corresponding tables linked in brackets):
+- `Top level geographies` ([top_level_geographies](tables/top_level_geographies.md))
+- `Geography groups` ([geography_groupings](tables/geography_groupings.md))
+- `Geography area` ([geography_areas](tables/geography_areas.md))
 
 ### Top level geographies
 
@@ -60,13 +64,29 @@ The geography_grouping defines how granular a particular area is based on one of
 |2012|MWED|Merging Wards and Electoral Divisions|
 |2013|WZLYR|Workplace Zone Layer|
 
-### geography area
+### Geography areas
 
 If you combine the two values then you get the resulting `geography_area`. This is stored with the format of: ${geography_grouping_id}:${top_level_geography_id}. So for example a geography area of 2005:6 would represent the counties of Northern Ireland.
 
-### Topics and Variables
+|geography_area|id|
+|-|-|
+|1|UK|United Kingdom|
+|...|...|
+|300|EW|England and Wales|
+|...|...|
+|2004|RGN|Regions|
+|2005|CNTY|Counties|
+|2006|LA|Local Authorities|
+|2007|WED|Wards and Electoral Divisions|
+|2008|MSOAIZ|Middle Super Output Areas and Intermediate Zones|
+|2009|LSOADZ|Lower Super Output Areas and Data Zones|
+|2010|OASA|Output Areas and Small Areas|
+|2011|MLA|Merging Local Authorities|
+|2012|MWED|Merging Wards and Electoral Divisions|
+|2013|WZLYR|Workplace Zone Layer|
+## Topics and Variables
 
-In the data the `geography_areas` are linked to `topics`, which in turn have their own sets of children that we refere to in this documentation as `variables`.
+In the data the `geography_areas` are linked to `topics`, which in turn have their own sets of children that we refere to in this documentation as `variables`. Topics represent high level categories of `variables` e.g. the Topic `AGE` has a set of variables such as: `16 to 24`, `24 to 30` etc.
 
 These `Topics` allow users to filter the data down and refine it to get the results they desire. The data however is grouped in a way that prevents users from refining down to specifically to identify individuals. for example you might only be interested in querying the topic `AGE` for a specific region, but you may have to search the topic_combination: `AGE`, and `Country of Birth` in order to get some results.
 
