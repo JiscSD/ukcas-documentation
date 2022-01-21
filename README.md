@@ -31,7 +31,7 @@ In the tables the geography data is described in 3 different ways (corresponding
 
 ### Top level geographies
 
-A `top-level geography` refers to the first (highest) geography level selectable. This is usually chosen at the start of a search by an end-user e.g. Wales (7) Below is a table of all the available top level geographies. It is referenced in the tables: [geography_areas](tables/geography_areas.md), 
+A `top level geography` refers to the first (highest) geography level selectable. This is usually chosen at the start of a search by an end-user e.g. Wales (7) Below is a table of all the available top level geographies. It is referenced in the tables: [geography_areas](tables/geography_areas.md), 
 
 |top_level_geography_id|description|
 |-|-|
