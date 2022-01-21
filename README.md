@@ -19,7 +19,7 @@ The SQL dump should allow for a minimized version of the database to be establis
 ## Understanding the data
 
 The census data is split up into many seperate tables with their own respective schemas. every census years data consists of two schemas: 
-a `meta data` schema which contains information regarding the context of the data
+a `meta data` schema which contains information regarding the context of the data. full descriptions of which can be found at [Tables](tables/index.md).
 and a `data` schema which contains the actual numerical data. In order to query this data you have to proceed through the tables, gathering the meta data that is of interest and process it so that you get the desired result. For an example on how to do this see: [Usage Examples](usage_examples.md).
 
 ## Understanding the geography metadata
