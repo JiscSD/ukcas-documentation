@@ -75,11 +75,3 @@ In the data the `geography areas` are linked to `topics`, which in turn have the
 These `Topics` allow users to filter the data down and refine it to get the results they desire. The data however is grouped in a way that prevents users from refining it down to identify individuals. for example you might only be interested in querying the topic `AGE` for a specific region, but you may have to search the topic_combination: `AGE`, and `Country of Birth` in order to get some results due to the restrictions.
 
 Variables represent the fine grained filters that match with the topics. So for example the topic `Country of Birth` might has the variables: `England`, `Germany`, `India` etc.
-
-```sql
-SELECT id, 
-       name, 
-       geography_area_count, 
-       description  
-  FROM c2011_meta.geography_groupings
-```
