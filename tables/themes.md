@@ -1,11 +1,13 @@
 
 # tables/themes
 
+The `themes` table exists to help categorise topics into different parent themes that are represented with an id. This will help end users find common topics that they are interested in querying. It is still a WIP but eventually there will be something like `theme_id` in the `topics` table that will relate the two in a one to many relationship.
+
 Note: Currently the `themes` table is a WIP so this information will need to be updated when the table is updated.
 
 
 ## What are themes?
-The `themes` table exists to help categorise topics into different parent themes that are represented with an id. This will help end users find common topics that they are interested in querying. It is still a WIP but eventually there will be something like `theme_id` in the `topics` table that will relate the two in a one to many relationship.
+`Themes` represent high level summaries that the various different topics can be grouped by.
 
 ## Example use
 The following `JOIN` queries could be carried out if the [topics](topics.md) table had a `theme_id` column:

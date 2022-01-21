@@ -1,9 +1,8 @@
 # tables/topic_combinations
-
-## What are topic_combinations?
 The `topic_combinations` table lists out the available `topic` combinations for each possible set of `geography_combinations`.
 
-Once a user has selected what locations to filter by, they will then be prompted to select topics alongside corresponding filters. However the data has been setup so that only certain combinations of `variables` can be selected depending on what [geography_combinations](geography_combinations.md)  have been chosen. This is to stop users manipulating data to identify individuals using the data.
+## What are topic_combinations?
+A `topic_combination` is a selection of different `topics` sorted in an array. The data has been setup so that only certain combinations of `topics` can be selected depending on what [geography_combinations](geography_combinations.md)  have been chosen. This is to stop users manipulating data to identify individuals in the census data by being overly specific.
 
 ## Example use
 Let's say that you have a topic within the [topics](topics.md) table and you want to check what topic combinations that topic fits into

@@ -1,17 +1,17 @@
 # tables/variables
 
-The `Variables` table displays information concerning the various different `variables` that are stored on the database.
+The `variables` table displays information concerning the various different `variables` that are stored on the database.
 The following `JOIN` queries can be carried out:
 
 - `id` on the [topics](topics.md) table using `topic_id`.
 
 ## What are variables?
 
-`variables` relate to topics in a many to one relationship. Where every [topic](topics.md) is sub-divided into many different variables. These `variables` alongside their parent `topics` represent context of the database as without them the data would just be arbitrary numbers alongside geographical locations.
+`variables` represent filters for a corresponding `topic` in a many to one relationship. These `variables` alongside their parent `topics` give context to the data e.g. a `variable` of `16 to 24` is a child of the `topic` `AGE`.
 
 ## Example use
 
-I want to identify every child `variable` for the `topic` `SEX`. We will start by identidying the `id` for the chosen `topic` of `SEX`.
+I want to identify every `variable` for the `topic`:`SEX`. We will start by identidying the `id` for the chosen `topic` of `SEX`.
 
 ```sql
 SELECT id, 
@@ -21,13 +21,11 @@ SELECT id,
  WHERE abbreviation = 'SEX';
 ```
 
-output:
-
 |id|abbreviation|description|
 |-|-|-|
 |64|SEX|The classification of a person as either male or female.|
 
-Now that we know the ID of the desired topic is `64` we can do a JOIN with the `variables` table in order to find out the corresponding `variables`.
+Now that we know the ID of the desired `topic` is `64` we can do a JOIN with the `variables` table in order to find out the corresponding `variables`.
 
 ```sql
 SELECT topic_id, 
@@ -38,7 +36,6 @@ SELECT topic_id,
  WHERE c2011_meta.topics.id = 64
 ```
 
-Which gives us the following result:
 |topic_id|description|
 |-|-|
 |64|Total: Sex|
@@ -46,6 +43,8 @@ Which gives us the following result:
 |64|Females|
 |64|Male|
 |64|Female|
+
+The above table represents the possible `variables` for the topic `SEX`.
 ## Schema
 
 |column|type|use|

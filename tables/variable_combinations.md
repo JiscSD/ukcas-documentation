@@ -3,7 +3,7 @@
 The `variable_combinations` table lists out for a given variable combination what topics they belong to, what `geography_combinations` these are available for, and most importantly gives the `table_name` and row `name` that the raw data is avaiable at. 
 ## What are variable_combinations?
 
-`variable_combinations` is the table that brings together the data in the other tables that can then be used to reference the actual raw data in the other schema. the `table_name` and `name` fields are used to achieve this. However we must first identify which entries we are interested in. Below is an example
+A `variable_combination` consists of multiple unique `variables` from different parent `topics`. The id of a `variable_combination` is a unique topic/varaible combination, i.e "Ages 16 - 75" and "Full time employment". This variable combination can be used to find a corresponding `cellname` and `table` from the `data` schema.
 
 ## Example use
 
