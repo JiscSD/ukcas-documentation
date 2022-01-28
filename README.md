@@ -26,6 +26,7 @@ and a `data` schema which contains the actual numerical data. In order to query 
 
 In the tables the geography data is described in 3 different ways (corresponding tables linked in brackets):
 - `Top level geographies` ([top_level_geographies](tables/top_level_geographies.md))
+- [Top level geographies](tables/top_level_geographies.md)
 - `Geography groups` ([geography_groupings](tables/geography_groupings.md))
 - `Geography area` ([geography_areas](tables/geography_areas.md))
 
