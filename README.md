@@ -2,6 +2,11 @@
 
 UKCAS is a data exploration project that aims to provide current and previous years Census data in an easily accessible format.
 
+After reading this document you should have an understanding of:
+- how the census data is stored
+- how to retrieve data from the database (see the usage example:[Usage Example](usage_examples.md))
+- what the various meta data in the tables represents
+
 
 ## Contents
 
@@ -10,7 +15,7 @@ UKCAS is a data exploration project that aims to provide current and previous ye
 
 ## Downloading the development database
 
-We provide a smaller version of the census data for anyone who wants to experiment or build their own data explorer in the form of an sql dump.
+We provide a sample set of the census data for anyone who wants to experiment or build their own data explorer in the form of an sql dump.
 
 [Download minimized census data](https://ukcas-dev-data.s3.eu-west-1.amazonaws.com/UKCAS_SQL_dump.zip)
 
@@ -25,9 +30,9 @@ and a `data` schema which contains the actual numerical data. In order to query 
 ## Understanding the geography metadata
 
 In the tables the geography data is described in 3 different ways (corresponding tables linked in brackets):
-- `Top level geographies` ([top_level_geographies](tables/top_level_geographies.md))
-- `Geography groups` ([geography_groupings](tables/geography_groupings.md))
-- `Geography area` ([geography_areas](tables/geography_areas.md))
+- [Top Level Geographies](tables/top_level_geographies.md)
+- [Geography Groupings](tables/geography_groupings.md)
+- [Geography Areas](tables/geography_areas.md)
 
 ### Top level geographies
 
@@ -66,7 +71,7 @@ The `geography grouping` defines how granular a particular area is based on one 
 
 ### Geography areas
 
-If you combine the two values then you get the resulting `geography area`. This is stored with the format of: `{geography_grouping_id}:{top_level_geography_id}`. So for example a geography area of `2005:6` would represent the counties of Northern Ireland.
+If you combine the two values then you get the resulting `geography area`. This is stored with the format of: `{geography_grouping_id}:{top_level_geography_id}`. So for example a geography area of `2005:5` would represent the counties of Northern Ireland.
 
 ## Topics and Variables
 

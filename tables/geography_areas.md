@@ -76,12 +76,12 @@ SELECT geography_areas.id,
 ## Sample query
 
 ```sql
-SELECT id, 
-       top_level_geography_id, 
-       geography_grouping_id, 
-       description, 
-       geography_code 
-  FROM c2011_meta.geography_areas 
+SELECT id,
+       top_level_geography_id,
+       geography_grouping_id,
+       description,
+       geography_code
+  FROM c2011_meta.geography_areas
  WHERE id = 17;
 ```
 

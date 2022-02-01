@@ -13,8 +13,8 @@ A geography area relation is a parent/child relationship between [geography_area
 
 ## Example use
 
-Let's say we want to see all of the regions that are related to Scotland which has a `top_level_geography` id of `6`.
-We can use the below query to identify all of the regions that have Scotland as a parent relation by doing a join between `geography_area_relations` and `geography_areas`.
+Let's say we want to see all of the areas that are related to Scotland which has a `top_level_geography` id of `6`.
+We can use the below query to identify all of the areas that have Scotland as a parent relation by doing a join between `geography_area_relations` and `geography_areas`.
 
 
 ```sql

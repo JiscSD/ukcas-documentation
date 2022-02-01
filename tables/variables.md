@@ -11,21 +11,21 @@ The following `JOIN` queries can be carried out:
 
 ## Example use
 
-I want to identify every `variable` for the `topic`:`SEX`. We will start by identidying the `id` for the chosen `topic` of `SEX`.
+I want to identify every `variable` for the `topic`:`ECOACT` (economic activity). We will start by identidying the `id` for the chosen `topic` of `ECOACT`.
 
 ```sql
 SELECT id, 
        abbreviation, 
        description  
   FROM c2011_meta.topics 
- WHERE abbreviation = 'SEX';
+ WHERE abbreviation = 'ECOACT';
 ```
 
 |id|abbreviation|description|
 |-|-|-|
-|64|SEX|The classification of a person as either male or female.|
+|18|ECOACT|Economic activity relates to whether or not a person who was aged 16 and over was working or looking for work in the week before census. Rather than a simple indicator of whether or not someone was currently in employment, it provides a measure of whether or not a person was an active participant in the labour market...|
 
-Now that we know the ID of the desired `topic` is `64` we can do a JOIN with the `variables` table in order to find out the corresponding `variables`.
+Now that we know the ID of the desired `topic` is `18` we can do a JOIN with the `variables` table in order to find out the corresponding `variables`.
 
 ```sql
 SELECT topic_id, 
@@ -33,18 +33,20 @@ SELECT topic_id,
   FROM c2011_meta.variables 
        LEFT JOIN c2011_meta.topics
        ON c2011_meta.variables.topic_id = c2011_meta.topics.id
- WHERE c2011_meta.topics.id = 64
+ WHERE c2011_meta.topics.id = 18
 ```
 
 |topic_id|description|
 |-|-|
-|64|Total: Sex|
-|64|Males|
-|64|Females|
-|64|Male|
-|64|Female|
+|18|Total: Economic activity|
+|18|Economically active|
+|18|Employed|
+|18|Full-time|
+|18|Unemployed|
+|18|Full-time students|
+|...|...|
 
-The above table represents the possible `variables` for the topic `SEX`.
+The above table represents some of the possible `variables` for the topic `ECOACT` (economic activity).
 ## Schema
 
 |column|type|use|
