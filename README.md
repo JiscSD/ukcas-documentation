@@ -7,17 +7,24 @@ After reading this document you should have an understanding of:
 - how to retrieve data from the database (see the usage example:[Usage Example](usage_examples.md))
 - what the various meta data in the tables represents
 
-
+The database and resulting data have been obtained from the [UK data service](https://ukdataservice.ac.uk/) the data we provide in this document is a small sample set. if you would like the full set of census data it is available at the above link. For an in depth explanation of what census data is see: [Census data explanation](https://ukdataservice.ac.uk/help/data-types/census-data/).
 ## Contents
 
-- [Tables](tables/index.md)
 - [Usage Examples](usage_examples.md)
+- [Downloading the development database](#downloading-the-development-database)
+- [Understanding the data](#understanding-the-data)
+- [Understanding the geography metadata](#understanding-the-geography-metadata)
+- [Top level geographies](#top-level-geographies)
+- [Geography groups](#geography-groups)
+- [Geography areas](#geography-areas)
+- [Topics and Variables](#topics-and-variables)
+- [Meta data Tables](#tables)
 
 ## Downloading the development database
 
 We provide a sample set of the census data for anyone who wants to experiment or build their own data explorer in the form of an sql dump.
 
-[Download minimized census data](https://ukcas-dev-data.s3.eu-west-1.amazonaws.com/UKCAS_SQL_dump.zip)
+[Download minimized census data](https://2011test.s3.eu-west-1.amazonaws.com/testData.zip)
 
 The SQL dump should allow for a minimized version of the database to be establised from there read through the documentation to help understand the structure of the db.
 
@@ -73,10 +80,28 @@ The `geography grouping` defines how granular a particular area is based on one 
 
 If you combine the two values then you get the resulting `geography area`. This is stored with the format of: `{geography_grouping_id}:{top_level_geography_id}`. So for example a geography area of `2005:5` would represent the counties of Northern Ireland.
 
-## Topics and Variables
+### Topics and Variables
 
 In the data the `geography areas` are linked to `topics`, which in turn have their own sets of children that we refer to in this documentation as `variables`. Topics represent high level categories of `variables` e.g. the Topic `AGE` has a set of variables such as: `16 to 24`, `24 to 30` etc.
 
 These `Topics` allow users to filter the data down and refine it to get the results they desire. The data however is grouped in a way that prevents users from refining it down to identify individuals. for example you might only be interested in querying the topic `AGE` for a specific region, but you may have to search the topic_combination: `AGE`, and `Country of Birth` in order to get some results due to the restrictions.
 
-Variables represent the fine grained filters that match with the topics. So for example the topic `Country of Birth` might has the variables: `England`, `Germany`, `India` etc.
+Variables represent the fine grained filters that match with the topics. So for example the topic `Country of Birth` might has the variables: `England`, `Germany`, `India` etc. Another example for instance is that the topic `Economic activity` has variables such as: `full time employment`, `unemployed`, `full-time student` etc.
+
+### Usage Example
+Now that you have an understanding of some of the core concepts of the data, consider going through our usage example:
+
+[Usage Example](usage_examples.md)
+### Meta Data Tables
+
+See below for a detailed explanation on the various different tables that make up the `metadata`
+
+- [Geography Area Relations](tables/geography_area_relations.md)
+- [Geography Areas](tables/geography_areas.md)
+- [Geography Groupings](tables/geography_groupings.md)
+- [Themes](tables/themes.md)
+- [Top Level Geographies](tables/top_level_geographies.md)
+- [Topic Combinations](tables/topic_combinations.md)
+- [Topics](tables/topics.md)
+- [Variable Combinations](tables/variable_combinations.md)
+- [Variables](tables/variables.md)
