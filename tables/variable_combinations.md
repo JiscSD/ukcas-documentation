@@ -1,17 +1,18 @@
 # tables/variable_combinations
 
-The `variable_combinations` table lists out for a given variable combination what topics they belong to, what `geography_combinations` these are available for, and most importantly gives the `table_name` and row `name` that the raw data is avaiable at. 
+The `variable_combinations` tables lists out the variable combinations available for the topic combinations, the `geography_combinations` they are available for, and most importantly gives the `table_name` and row `name` that the raw data is avaiable at. 
+
 ## What are variable_combinations?
 
-A `variable_combination` consists of multiple unique `variables` from different parent `topics`. The id of a `variable_combination` is a unique topic/varaible combination, i.e "Ages 16 - 75" and "Full time employment". This variable combination can be used to find a corresponding `cellname` and `table` from the `data` schema.
+A `variable_combination` consists of multiple unique `variables` from different parent `topics`. The id of a `variable_combination` is a unique topic/varriable combination, i.e "Ages 16 - 75" and "Full time employment". This variable combination can be used to find a corresponding `cellname` and `table` from the `data` schema.
 
 ## Example use
 
-In order to query this though one has to know the following information:
+In order to query this though, you need the following information:
 - what `topic_variable_combination` combination they are querying
-- what `geography_combination` they are querying
-With this information you can get the `name` and `table_names` for a particular entry.
-e.g. 
+- what `geography_combination` they are querying.
+
+With this information you can get the `name` and `table_names` for a particular entry: 
 ```sql
 SELECT name, 
        geography_combination, 
@@ -21,7 +22,6 @@ SELECT name,
   FROM c2011_meta.variable_combinations
  WHERE ARRAY['AGE:50','ECOACT:565','SEX:1933','UNIT:1962'] <@ ARRAY[topic_variable_combination]
 ```
-output:
 |name|geography_combination|topic_variable_combination|table_name|description
 |-|-|-|-|-|
 |DC6107EW0610|2002:3,2003:4,2003:7,2004:4,2005:4,2006:4,2006:7,2007:4,2007:7,2008:4,2008:7,2011:4|AGE:50,ECOACT:565,SEX:1933,UNIT:1962|DC6107_0_EW_MRG_RCD_AGG|Age 65 and over // Economically active // Females // Persons|

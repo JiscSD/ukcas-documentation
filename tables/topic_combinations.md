@@ -2,7 +2,7 @@
 The `topic_combinations` table lists out the available `topic` combinations for each possible set of `geography_combinations`.
 
 ## What are topic_combinations?
-A `topic_combination` is a selection of different `topics` sorted in an array. The data has been setup so that only certain combinations of `topics` can be selected depending on what [geography_combinations](geography_combinations.md)  have been chosen. This is to stop users manipulating data to identify individuals in the census data by being overly specific.
+A `topic_combination` is a selection of different `topics` sorted in an array. The data has been setup so that only certain combinations of `topics` can be selected depending on what [geography_combinations](geography_combinations.md) have been chosen. This is to prevent users manipulating data to identify individuals in the census data by being overly specific.
 
 ## Example use
 Let's say that you have a topic within the [topics](topics.md) table and you want to check what topic combinations that topic fits into
@@ -17,13 +17,13 @@ SELECT id,
 
 |id|combination|geography_combinations|
 |-|-|-|
-|106|AGE,COBCON,ECOACT,INDUST,SEX,UNIT|{2003:5}|
+|106|AGE,COBCON,ECOACT,INDUST,SEX,UNIT|2003:5|
 |107|AGE,COBCON,ECOACT,OGRPMIN,SEX,UNIT|2003:5|
 |108|AGE,COBCON,ECOACT,SEX,UNIT|2003:5|
 |147|AGE,DAYPOP,ECOACT,NSSEC,UNIT|2002:3,2003:4,2003:5,2003:7,2004:4,2005:4,2006:4,2006:5,2006:7,2007:5,2008:4,2008:7,2009:5,2011:4,2013:4,2013:7|
 
-With this information we can identify what `topic combinations` that `AGE` is contained within, as well as being able to confirm what `geography_combinations` these `topic_combinations` can be queried for.
-This query is particularly useful after the user has selected their first (`primary`) topic in the UI as it allows us to display the available topic groups that the user can query are data on based on the initial selection.
+With this information we can identify the `topic combinations` that `AGE` is contained within, as well as being able to confirm what `geography_combinations` these `topic_combinations` can be queried for.
+This query is particularly useful after the user has selected their first (`primary`) topic in the UI as it allows us to display the available topic groups that the user can query our data on based on the initial selection.
 
 ## Schema
 
@@ -56,8 +56,8 @@ This query will return the following table:
 
 |id|variable_combination_count|combination|geography_combinations|title|
 |-|-|-|-|-|
-|106|513{AGE,COBCON,ECOACT,INDUST,SEX,UNIT}|{2003:5}|Country of birth (condensed for Northern Ireland) by Industry by Sex 2011|
+|106|513|{AGE,COBCON,ECOACT,INDUST,SEX,UNIT}|{2003:5}|Country of birth (condensed for Northern Ireland) by Industry by Sex 2011|
 |107|945|{AGE,COBCON,ECOACT,OGRPMIN,SEX,UNIT}|{2003:5}|Country of birth (condensed for Northern Ireland) by Economic activity by Occupation (minor groups) by Sex 2011|
 |108|1890|{AGE,COBCON,ECOACT,SEX,UNIT}|{2003:5}|Age by Country of birth (condensed) by Economic activity by Sex 2011|
 |147|97|{AGE,DAYPOP,ECOACT,NSSEC,UNIT}|{2002:3,2003:4,2003:5,2003:7,2004:4,2005:4,2006:4,2006:5,2006:7,2007:5,2008:4,2008:7,2009:5,2011:4,2013:4,2013:7}|NS-SeC (National Statistics Socio-economic Classification) (Workplace Population) 2011|
-|99|994{AGE,COB,MNLANNI,UNIT}|{2003:5,2006:5}|Country of birth by Main language (Northern Ireland)|2011|
+|99|994|{AGE,COB,MNLANNI,UNIT}|{2003:5,2006:5}|Country of birth by Main language (Northern Ireland)|2011|

@@ -21,7 +21,7 @@ A `top-level geography` refers to the first (highest) geography level selectable
 |6|Scotland|
 |7|Wales|
 
-A table that `top_level_geographies` relates to is [geography_groupings](geography_groupings.md). The geography_grouping defines how granular a particular area is based on one of 14 different classifications ranging from as broad as the entire UK (`geography_grouping_id` = 2000), all the way down to workplace zone layers (`geography_grouping_id` = 2013).See below for a list of the available geography_groupings.
+A table that `top_level_geographies` relates to is [geography_groupings](geography_groupings.md). The geography_grouping defines how granular a particular area is based on one of 14 different classifications ranging from as broad as the entire UK (`geography_grouping_id` = 2000), all the way down to workplace zone layers (`geography_grouping_id` = 2013). See below for a list of the available geography_groupings.
 
 |geography_grouping_id|abbreviation|name|
 |-|-|-|
@@ -40,10 +40,10 @@ A table that `top_level_geographies` relates to is [geography_groupings](geograp
 |2012|MWED|Merging Wards and Electoral Divisions|
 |2013|WZLYR|Workplace Zone Layer|
 
-If you combine the two values then you get the resulting `geography_area` which is referenced in the tables [geography_areas](geography_areas.md)[topic_combinations](topic_combinations.md) as `geography_combinations` and [variable_combinations](variable_combinations.md) as `geography_combination`.The data in [topic_combinations](topic_combinations.md) and [variable_combinations](variable_combinations.md) is stored with the format of: ${geography_grouping_id}:${top_level_geography_id} e.g. 2006:4 (which in this case represents the Isle of Wight local authority). While [geography_areas](geography_areas.md) gives a description on what the areas represent.
+If you combine the two values then you get the resulting `geography_area` which is referenced in the tables [geography_areas](geography_areas.md), [topic_combinations](topic_combinations.md) as `geography_combinations` and [variable_combinations](variable_combinations.md). The data in [topic_combinations](topic_combinations.md) and [variable_combinations](variable_combinations.md) is stored with the format of: ${geography_grouping_id}:${top_level_geography_id} e.g. 2006:4 (which in this case represents the Isle of Wight local authority). While [geography_areas](geography_areas.md) gives a description on what the areas represent.
 ## Example use
 
-Let's say you want to list out all of the `geography_areas` that have a `top_level_geography_id` of `6` (Scotland). YOu could perform the following join on the [geography_areas](geography_areas.md) table to get the data:
+Let's say you want to list out all of the `geography_areas` that have a `top_level_geography_id` of `6` (Scotland). You could perform the following join on the [geography_areas](geography_areas.md) table to get the data:
 
 ```sql
 SELECT geography_grouping_id,

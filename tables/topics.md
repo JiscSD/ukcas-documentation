@@ -38,7 +38,7 @@ SELECT c2011_meta.topics.id,
 |id|int4|primary key, and a foreign key used by `variables` table|
 |abbreviation|varchar(255)|The shorthand way of referencing the topics `name`|
 |name|varchar(255)|the full length name for the selected topic|
-|description|text|A full description describing what the topic represents|
+|description|text|A full description of the topic|
 |ordinal|int4|A value that represents an arbitrary numerical order for the data|
 |top_level_geography_coverage|_int4|an array of what geographies from the `top_level_geographies` table these topics are available for|
 

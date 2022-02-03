@@ -23,7 +23,7 @@ The relation to the [top_level_geographies](top_level_geographies.md) table defi
 |6|Scotland|
 |7|Wales|
 
-The other table that this table relates to is [geography_groupings](geography_groupings.md). The geography_grouping defines how granular a particular area is based on one of 14 different classifications ranging from as broad as the entire UK (`geography_grouping_id` = 2000), all the way down to workplace zone layers (`geography_grouping_id` = 2013).See below for a list of the available geography_groupings.
+The other table that this table relates to is [geography_groupings](geography_groupings.md). The geography_grouping defines how granular a particular area is based on one of 14 different classifications ranging from as broad as the entire UK (`geography_grouping_id` = 2000), all the way down to workplace zone layers (`geography_grouping_id` = 2013). See below for a list of the available geography_groupings.
 
 |geography_grouping_id|abbreviation|name|
 |-|-|-|
@@ -42,7 +42,7 @@ The other table that this table relates to is [geography_groupings](geography_gr
 |2012|MWED|Merging Wards and Electoral Divisions|
 |2013|WZLYR|Workplace Zone Layer|
 
-If you combine the two values then you get the resulting `geography_area` which is referenced in the tables [topic_combinations](topic_combinations.md) as `geography_combinations` and [variable_combinations](variable_combinations.md) as `geography_combination`.The data is stored with the format of: ${geography_grouping_id}:${top_level_geography_id} e.g. 2006:4 (which in this case represents the Isle of Wight local authority).
+If you combine the two values then you get the resulting `geography_area` which is referenced in the tables [topic_combinations](topic_combinations.md) as `geography_combinations` and [variable_combinations](variable_combinations.md) as `geography_combination`. The data is stored with the format of: ${geography_grouping_id}:${top_level_geography_id} e.g. 2006:4 (which in this case represents the Isle of Wight local authority).
 ## Example use
 
 Searching within a top-level geography of `Wales`, you would find the `geography_area` of `Gwynedd`, which can be seen through the following `JOIN` on `top_level_geographies`:
