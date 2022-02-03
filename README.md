@@ -3,14 +3,13 @@
 UKCAS is a data exploration project that aims to provide current and previous years Census data in an easily accessible format.
 
 After reading this document you should have an understanding of:
-- how the census data is stored
-- how to retrieve data from the database (see the usage example:[Usage Example](usage_examples.md))
-- what the various meta data in the tables represents
+- How the census data is stored
+- How to retrieve data from the database (see the [Usage Example](usage_examples.md))
+- What the various meta data in the tables represents
 
-The database and resulting data have been obtained from the [UK data service](https://ukdataservice.ac.uk/) the data we provide in this document is a small sample set. if you would like the full set of census data it is available at the above link. For an in depth explanation of what census data is see: [Census data explanation](https://ukdataservice.ac.uk/help/data-types/census-data/).
+The database and resulting data have been obtained from the [UK data service](https://ukdataservice.ac.uk/) the data we provide in this document is a small sample set. If you would like the full set of census data it is available at the above link. For an in depth explanation of what census data is see: [Census data explanation](https://ukdataservice.ac.uk/help/data-types/census-data/).
 ## Contents
 
-- [Usage Examples](usage_examples.md)
 - [Downloading the development database](#downloading-the-development-database)
 - [Understanding the data](#understanding-the-data)
 - [Understanding the geography metadata](#understanding-the-geography-metadata)
@@ -19,6 +18,7 @@ The database and resulting data have been obtained from the [UK data service](ht
 - [Geography areas](#geography-areas)
 - [Topics and Variables](#topics-and-variables)
 - [Meta data Tables](#tables)
+- [Usage Example](#usage-example)
 
 ## Downloading the development database
 
@@ -26,13 +26,15 @@ We provide a sample set of the census data for anyone who wants to experiment or
 
 [Download minimized census data](https://2011test.s3.eu-west-1.amazonaws.com/testData.zip)
 
-The SQL dump should allow for a minimized version of the database to be establised from there read through the documentation to help understand the structure of the db.
+The SQL dump should allow for a minimized version of the database to be establised.
 
 ## Understanding the data
 
 The census data is split up into many seperate tables with their own respective schemas. every census years data consists of two schemas: 
 a `meta data` schema which contains information regarding the context of the data. full descriptions of which can be found at [Tables](tables/index.md).
 and a `data` schema which contains the actual numerical data. In order to query this data you have to proceed through the tables, gathering the meta data that is of interest and process it so that you get the desired result. For an example on how to do this see: [Usage Examples](usage_examples.md).
+
+The `meta data` is stored in the schemas with the format *year*_meta e.g. c2011_meta while the data schema is simply labelled with the corresponding census year e.g. c2011
 
 ## Understanding the geography metadata
 
@@ -86,7 +88,7 @@ In the data the `geography areas` are linked to `topics`, which in turn have the
 
 These `Topics` allow users to filter the data down and refine it to get the results they desire. The data however is grouped in a way that prevents users from refining it down to identify individuals. for example you might only be interested in querying the topic `AGE` for a specific region, but you may have to search the topic_combination: `AGE`, and `Country of Birth` in order to get some results due to the restrictions.
 
-Variables represent the fine grained filters that match with the topics. So for example the topic `Country of Birth` might has the variables: `England`, `Germany`, `India` etc. Another example for instance is that the topic `Economic activity` has variables such as: `full time employment`, `unemployed`, `full-time student` etc.
+Variables represent the fine grained filters of their parent topics. So for example the topic `Country of Birth` might have the variables: `England`, `Germany`, `India` etc. Another example for instance is that the topic `Economic activity` has variables such as: `full time employment`, `unemployed`, `full-time student` etc.
 
 ### Usage Example
 Now that you have an understanding of some of the core concepts of the data, consider going through our usage example:

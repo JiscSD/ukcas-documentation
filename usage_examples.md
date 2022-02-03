@@ -13,8 +13,8 @@ If you would like to learn more about these things before reading the examples t
 [Postgres home page](https://www.postgresql.org/)
 
 ## Deciding on our search
-The first step in getting data from the dataset is deciding on a query/question that we will attempt to retrieve from the database. For the first examples we will be looking at the query "How many people are in full-time employment in Wales?"
-## How many people are in full-time employment in Wales?
+The first step in getting data from the dataset is deciding on a query/question that we will attempt to retrieve from the database. For the first examples we will be looking at the query "*How many people are in full-time employment in Wales?*"
+## "How many people are in full-time employment in Wales?"
 
 ### Choosing the Geography Area
 First we need to identify what `geography area` we want to query. In order to make this decision we will first need to query the [Top Level Geographies](tables/top_level_geographies.md) table to list out what top level geographies are available.
@@ -69,27 +69,22 @@ In this case the only possible selection is `Wales` and so we use this `geograph
 
 ### Picking a Topic combination
 
-We now need to pick what topics we want to search on by listing out the available `topics` that match our chosen `geography area`. The `topics` are grouped together in the database in `topic_combinations` so users will usually have to select more than one topic in order to query the data. (this is to protect individuals in the census data from being singled out by using very granular searches over small/specific geography areas).
-
+ We know that the topic we want to search by is `Economic Activity`, in order to query the `topic_combinations` table we need to get the abbreviation for our desired `topic`.
 
 ```sql
-SELECT combination 
-  FROM c2011_meta.topic_combinations
- WHERE ARRAY['2003:7'] <@ ARRAY[c2011_meta.topic_combinations.geography_combinations];
+SELECT id,
+       abbreviation,
+       name
+  FROM c2011_meta.topics 
+ WHERE name = 'Economic activity'
 ```
-The above query provides us with every `topic` combination for the selected `geography area`. Below is a small sample:
-|combination|
-|-|
-|{AGE,DAYPOP,ECOACT,NSSEC,UNIT}|
-|{AGE,DAYPOP,ECOACT,OGRPMIN,UNIT}|
-|{AGE,DAYPOP,ECOACT,PPHALL,UNIT}|
-|{AGE,DAYPOP,ECOACT,RELIG,UNIT}|
-|{AGE,DAYPOP,ECOACT,TENURE,UNIT,URESPOP}|
-|...
 
-We now have a list of all the possible `topic_combinations` for our selected geography area of `Wales`. We now want to know how many people are in full-time employment for the selected geography, So we select: `economic activity` (ECOACT).
+|id|abbreviation|name|
+|-|-|-|
+|18|ECOACT|Economic activity|
 
-Now we need to query the table for only `topic_combinations` that contain `economic activity` and match our chosen `geography area`.
+We now need to pick what topics we want to search on by listing out the available `topic_combinations` that match our chosen `geography area` and primary `topic`. The `topics` are grouped together in the database in `topic_combinations` so users will usually have to select more than one topic in order to query the data. (this is to protect individuals in the census data from being singled out by using very granular searches over small/specific geography areas).
+We now query the `topic_combinations` table for only `topic_combinations` that contain `economic activity` and match our chosen `geography area` of `2003:7`.
 
 ```sql
 SELECT combination,
@@ -117,7 +112,7 @@ Now user selects the `topic` group containing `economic activity` that they desi
 Note that `UNIT` is a universal topic that is contained in every topic combination.
 
 ### Querying the Variables table
-Now that we have identified our `topic combination` we now query `variable_combinations` for the relevant `cellnames` and `tablenames` that relate to the data.
+Now that we have identified our `topic combination` we now query `variable_combinations` for the relevant `names` and `tablenames` that relate to the data.
 
 
 ```sql
