@@ -1,4 +1,4 @@
-## Preface
+## Usage Examples
 
 These Usage examples are designed to aid people in understanding how to navigate the metadata. This guide/example does not explain how sql works or how databases work in general.
 
@@ -12,17 +12,22 @@ If you would like to learn more about these things before reading the examples t
 
 [Postgres home page](https://www.postgresql.org/)
 
-## Deciding on our search
+## Deciding on our search/objective
 The first step in getting data from the dataset is deciding on a query/question that we will attempt to retrieve from the database. For the first examples we will be looking at the query "*How many people are in full-time employment in Wales?*"
+ <br/><br/>
 ## "How many people are in full-time employment in Wales?"
 
 ### Choosing the Geography Area
 First we need to identify what `geography area` we want to query. In order to make this decision we will first need to query the [Top Level Geographies](tables/top_level_geographies.md) table to list out what top level geographies are available.
 
+ <br/><br/>
+---
 ```sql
 SELECT * 
   FROM c2011_meta.top_level_geographies;
+-- selecting all columns from the top_level_geographies table
 ```
+ <br/><br/>
 |geography_type_id|id|description|geography_code|hidden_from_ui|
 |-|-|-|-|-|
 |2000|1|United Kingdom|K02000001|false|
@@ -33,8 +38,12 @@ SELECT *
 |2003|6|Scotland|S92000003|false|
 |2003|7|Wales|W92000004|false|
 
+---
+ <br/><br/>
 We now select the `top level geography` Wales from the above selection. We now want to decide how granular we want the data to be by selecting a `geography_area`. We need to query the `geography_areas` table so that we can get all the possible options.
 
+ <br/><br/>
+---
 ```sql
 SELECT id,
        name,
@@ -42,8 +51,10 @@ SELECT id,
        geography_area_count,
        top_level_geography_id
   FROM c2011_meta.geography_groupings
- WHERE ARRAY[top_level_geography_id] @> ARRAY[6];
+ WHERE ARRAY[top_level_geography_id] @> ARRAY[7];
+-- select only values where the top_level_geography id for the grouping contains the value 7 (Wales).
 ```
+ <br/><br/>
 |id|name|description|geography_area_count|top_level_geography_id|
 |-|-|-|-|-|
 |2003|Countries and Groupings|England, Wales, Scotland and Northern Ireland.|4|{4,5,6,7}|
@@ -53,23 +64,37 @@ SELECT id,
 |2009|Lower Super Output Areas and Data Zones|Lower Super Output Areas in England; Super Output Areas in Northern Ireland; Census Datazones in Scotland; Lower Super Output Areas in Wales|42143|{4,5,6,7}|
 |2010|Output Areas and Small Areas|Output Areas in England; Output Areas in Scotland; Output Areas in Wales; Small Areas in Northern Ireland|232296|{4,5,6,7}|
 
-From this output we select the id `2003`. We can now query the `geography_areas` table for a complete list of possible geography selections based on our choice of `Wales` for top level grography, and `countries and groupings` as our geography grouping.
+---  
+ <br/><br/>
+
+From this output we select the id `2003`. We can now query the `geography_areas` table for a complete list of possible geography selections based on our choice of `Wales` (7) for top level grography, and `countries and groupings` (2003) as our geography grouping.
+
+ <br/><br/>
+---
+
 ```sql
 SELECT * 
   FROM c2011_meta.geography_areas
  WHERE c2011_meta.geography_areas.geography_grouping_id = 2003
    AND c2011_meta.geography_areas.top_level_geography_id = 7;
+-- here we are using our obtained values of top level geography (7), and geography grouping (2003) to query the geography_areas table.
 ```
-
+ <br/><br/>
 |geography_grouping_id|id|description|geography_code|top_level_geography_id|
 |-|-|-|-|-|
 |2003|7|Wales|W92000004|7|
 
-In this case the only possible selection is `Wales` and so we use this `geography area` for the query. 
+---
+ <br/><br/>
 
+In this case the only possible selection is `Wales` and so we use this `geography area` for the query. 
+ <br/><br/>
 ### Picking a Topic combination
 
  We know that the topic we want to search by is `Economic Activity`, in order to query the `topic_combinations` table we need to get the abbreviation for our desired `topic`.
+
+ <br/><br/>
+---
 
 ```sql
 SELECT id,
@@ -78,14 +103,16 @@ SELECT id,
   FROM c2011_meta.topics 
  WHERE name = 'Economic activity'
 ```
-
+ <br/><br/>
 |id|abbreviation|name|
 |-|-|-|
 |18|ECOACT|Economic activity|
 
+---
+ <br/><br/>
 We now need to pick what topics we want to search on by listing out the available `topic_combinations` that match our chosen `geography area` and primary `topic`. The `topics` are grouped together in the database in `topic_combinations` so users will usually have to select more than one topic in order to query the data. (this is to protect individuals in the census data from being singled out by using very granular searches over small/specific geography areas).
 We now query the `topic_combinations` table for only `topic_combinations` that contain `economic activity` and match our chosen `geography area` of `2003:7`.
-
+ <br/><br/>
 ```sql
 SELECT combination,
        id
@@ -93,9 +120,9 @@ SELECT combination,
  WHERE ARRAY['2003:7'] <@ ARRAY[c2011_meta.topic_combinations.geography_combinations]
    AND ARRAY['ECOACT'] <@ ARRAY[c2011_meta.topic_combinations.combination];
 ```
-
+ <br/><br/>
 Which produces the following results (we're just showing the first 5 results).
-
+ <br/><br/>
 |combination|id|
 |-|-|
 |{ECOACT,FAMSTA,UNIT,URESPOP}|745|
@@ -104,16 +131,16 @@ Which produces the following results (we're just showing the first 5 results).
 |{AGEHRP,ECOACT,HHOLDRP,OCCUP,TENURE,UNIT}|579|
 |{AGEHRP,ECOACT,HHOLDRP,INDUST,TENURE,UNIT}|578|
 |{AGE,ECOACT,UNIT}|317|
-
-Now user selects the `topic` group containing `economic activity` that they desire (we've selected the simplest combination). This means that the results will be grouped by `age` and `economic activity`
+ <br/><br/>
+Now the user selects the `topic` group containing `economic activity` that they desire (we've selected the simplest combination). This means that the results will be grouped by `age` and `economic activity`
 
 `AGE,ECOACT,UNIT`
 
 Note that `UNIT` is a universal topic that is contained in every topic combination.
-
+ <br/><br/>
 ### Querying the Variables table
 Now that we have identified our `topic combination` we now query `variable_combinations` for the relevant `names` and `tablenames` that relate to the data.
-
+ <br/><br/>
 
 ```sql
 SELECT table_column_name,
@@ -123,7 +150,7 @@ SELECT table_column_name,
   FROM c2011_meta.variable_combinations
  WHERE ARRAY['AGE','ECOACT','UNIT'] = c2011_meta.variable_combinations.topic_combination;
 ```
-
+ <br/><br/>
 |name|topic_variable_combination|description|table_name|
 |-|-|-|-|
 |QS601SC0010|{AGE:46,ECOACT:570,UNIT:1962}|Age 16 to 74 // Economically active\ Full-time students // Persons|QS601_0_SC_MRG_RCD_AGG|
@@ -131,11 +158,13 @@ SELECT table_column_name,
 |QS601UK0003|{AGE:46,ECOACT:3823,UNIT:1962}|Age 16 to 74 // Persons // Economically active\ Employee\ Part-time (excluding full-time students)|QS601_0_UK_MRG_RCD_AGG|
 |QS601UK0004|{AGE:46,ECOACT:3795,UNIT:1962}|Age 16 to 74 // Persons // Economically active\ Employee\ Full-time (excluding full-time students)|QS601_0_UK_MRG_RCD_AGG|
 |...|...|...|...|
-
+---
+ <br/><br/>
 ### Querying the data tables using the obtained Metadata
 
 To get the number of citizens each `name` and `table_name` this corresponds to we can do a query like so:
 
+---
 ```sql
 SELECT geocodeid, 
        QS601SC0010 
@@ -149,12 +178,15 @@ SELECT geocodeid,
 |354551|81|
 |354552|63|
 |354553|120|
+---
+ <br/><br/>
 
 The `geocodeid` refers back to the `geography_areas` `id` column.
 while the cellname column represents the number of people, for that geography, that match our selection of `topics` and `variables`.
 
 We can go on to query the `geography_areas` table to identify the names of the found `geography_areas`
 
+ <br/><br/>
 ```sql
 SELECT id, 
        description 
@@ -171,7 +203,8 @@ which returns:
 |354551|Hareleeshill|
 |354552|Strutherhill|
 |354553|Stonehouse|
-
+---
+<br/><br/>
 ### Results
 If we combine the previous table showing the `variable_combination` we can now present the end result:
 

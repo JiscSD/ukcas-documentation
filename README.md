@@ -19,6 +19,7 @@ The database and resulting data have been obtained from the [UK data service](ht
 - [Topics and Variables](#topics-and-variables)
 - [Meta data Tables](#tables)
 - [Usage Example](#usage-example)
+- [meta data schema relationship diagram](tables/ERD.png)
 
 ## Downloading the development database
 
@@ -38,7 +39,7 @@ The `meta data` is stored in the schemas with the format *year*_meta e.g. c2011_
 
 ## Understanding the geography metadata
 
-In the tables the geography data is described in 3 different ways (corresponding tables linked in brackets):
+In the tables the geography data is described in 3 different ways:
 - [Top Level Geographies](tables/top_level_geographies.md)
 - [Geography Groupings](tables/geography_groupings.md)
 - [Geography Areas](tables/geography_areas.md)
