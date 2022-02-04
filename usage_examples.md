@@ -131,7 +131,11 @@ Which produces the following results (we're just showing the first 5 results).
 |{AGEHRP,ECOACT,HHOLDRP,OCCUP,TENURE,UNIT}|579|
 |{AGEHRP,ECOACT,HHOLDRP,INDUST,TENURE,UNIT}|578|
 |{AGE,ECOACT,UNIT}|317|
+---
  <br/><br/>
+
+
+
 Now the user selects the `topic` group containing `economic activity` that they desire (we've selected the simplest combination). This means that the results will be grouped by `age` and `economic activity`
 
 `AGE,ECOACT,UNIT`
@@ -164,7 +168,6 @@ SELECT table_column_name,
 
 To get the number of citizens each `name` and `table_name` this corresponds to we can do a query like so:
 
----
 ```sql
 SELECT geocodeid, 
        QS601SC0010 
@@ -215,3 +218,4 @@ If we combine the previous table showing the `variable_combination` we can now p
 |354551|Hareleeshill|Age 16 to 74 // Economically active\ Full-time students // Persons|81|
 |354552|Strutherhill|Age 16 to 74 // Economically active\ Full-time students // Persons|63|
 |354553|Stonehouse|Age 16 to 74 // Economically active\ Full-time students // Persons|120|
+---

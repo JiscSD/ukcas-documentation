@@ -7,7 +7,7 @@ After reading this document you should have an understanding of:
 - How to retrieve data from the database (see the [Usage Example](usage_examples.md))
 - What the various meta data in the tables represents
 
-The database and resulting data have been obtained from the [UK data service](https://ukdataservice.ac.uk/) the data we provide in this document is a small sample set. If you would like the full set of census data it is available at the above link. For an in depth explanation of what census data is see: [Census data explanation](https://ukdataservice.ac.uk/help/data-types/census-data/).
+The database and resulting data have been obtained from the [UK data service](https://ukdataservice.ac.uk/), the data we provide in this document is a small sample set. If you would like the full set of census data it is available at the above link. For an in depth explanation of what census data is see: [Census data explanation](https://ukdataservice.ac.uk/help/data-types/census-data/).
 ## Contents
 
 - [Downloading the development database](#downloading-the-development-database)
