@@ -54,7 +54,7 @@ We've now obtained results that represent `women`, `aged 65 and over`, `who are 
 |geography_combination|_text|Lists all of the relevant `geography combinations` for that `variable_combination`|
 |geography_groupings|_text|Lists all of the `geography groupings` for that `variable_combination`|
 |description|varchar|a description of what the selected `variable combination` represents|
-|table_name|varchar(50)|the name of a table stored in the data schema of the database.|
+|table_name|_text|the name of tables stored in the data schema of the database.|
 |top_level_geography|_int4|A list of all the `top level geography` entries for a parrticular `variable_combination`|
 
 ## Sample query
