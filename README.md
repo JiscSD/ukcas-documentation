@@ -105,6 +105,7 @@ See below for a detailed explanation on the various different tables that make u
 - [Themes](tables/themes.md)
 - [Top Level Geographies](tables/top_level_geographies.md)
 - [Topic Combinations](tables/topic_combinations.md)
+- [Topic Combination Universes](tables/topic_combination_universes.md)
 - [Topics](tables/topics.md)
 - [Variable Combinations](tables/variable_combinations.md)
 - [Variables](tables/variables.md)
