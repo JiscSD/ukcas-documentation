@@ -37,7 +37,6 @@ This query is particularly useful after the user has selected their first (`prim
 |geography_groupings|_int4|a list of all unique `geography_groupings` ids that are listed in `geography_combinations`|
 |top_level_geographies|_int4|a list of all unique `top_level_geographies` ids that are listed in `geography_combinations`|
 |title|varchar(255)|A text description of the selected combination|
-|universe|varchar(255)|lists the values that are present in all of the combinations, and so can be ignored for filtering purposes.|
 |units|_int4|units are `variables` that are guaranteed to be present as part of the selected topic combination.|
 
 
