@@ -1,5 +1,5 @@
-# tables/topic_combination_universe
-The `topic_combination_universe` table lists out the available `topic` combinations for each possible set of `universe`.
+# tables/topic_combination_universes
+The `topic_combination_universes` table lists out the available `topic` combinations for each possible set of `universe`.
 
 ## What are universes?
 A `universe` is the account of the values that are present in all of the combinations. E.g. Residents aged 16 and over in employment.
