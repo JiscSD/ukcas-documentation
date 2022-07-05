@@ -10,6 +10,7 @@ This section contains information about the UKCAS PostgreSQL database. This incl
 - [themes](themes.md)
 - [top_level_geographies](top_level_geographies.md)
 - [topic_combinations](topic_combinations.md)
+- [topic_combination_universes](topic_combination_universes.md)
 - [topics](topics.md)
 - [variable_combinations](variable_combinations.md)
 - [variables](variables.md)
